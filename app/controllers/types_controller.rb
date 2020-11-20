@@ -4,17 +4,19 @@ class TypesController < ApplicationController
   # GET /types
   # GET /types.json
   def index
-    @types = Type.all
+    @types = Type.where(:user_id => current_user.id)
   end
 
   # GET /types/1
   # GET /types/1.json
   def show
+
   end
 
   # GET /types/new
   def new
     @type = Type.new
+    @type.user_id = current_user.id
   end
 
   # GET /types/1/edit
@@ -25,7 +27,7 @@ class TypesController < ApplicationController
   # POST /types.json
   def create
     @type = Type.new(type_params)
-
+    @type.user_id = current_user.id
     respond_to do |format|
       if @type.save
         format.html { redirect_to @type, notice: 'Type was successfully created.' }
@@ -69,6 +71,6 @@ class TypesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def type_params
-      params.require(:type).permit(:name, :image)
+      params.require(:type).permit(:name, :image, :user_id)
     end
 end

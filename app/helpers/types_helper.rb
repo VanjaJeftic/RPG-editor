@@ -3,7 +3,7 @@ module TypesHelper
   def type_avatar(type)
     @image = type.image
     if @image.attached?
-      @image_type = image_tag (@image.url)
+      @image_type = image_tag (@image)
     else
       @image_type = image_tag("download.png")
     end
