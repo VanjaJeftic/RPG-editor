@@ -8,7 +8,8 @@
 name: Ruby
 
 on:
-  push
+  push:
+  pull_request:
 
 jobs:
   build:
@@ -26,9 +27,7 @@ jobs:
         uses: actions/setup-ruby@v1
         with:
           ruby-version: 2.7.x
-      - name: Install PostgreSQL 11 client
-        run: |
-          sudo apt-get -yqq install libpq-dev
+
       - name: Build App
         env:
           PGHOST: localhost
@@ -38,10 +37,3 @@ jobs:
           sudo apt-get -yqq install libpq-dev
           gem install bundler
           bundle install --jobs 4 --retry 3
-          bin/rails db:setup
-       - name: Run Tests
-              env:
-                PGHOST: localhost
-                PGUSER: postgres
-                RAILS_ENV: test
-              run: bundle exec rspec
