@@ -56,7 +56,7 @@ class TypesController < ApplicationController
   def destroy
     @type.destroy
     respond_to do |format|
-      format.html { redirect_to types_url, notice: 'Type was successfully destroyed.' }
+      format.html { redirect_to root_path, notice: 'Type was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

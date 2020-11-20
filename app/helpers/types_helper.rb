@@ -1,7 +1,13 @@
 module TypesHelper
-  def type_avatar(type, size=40)
-    if type.image.attached?
-      type.image.variant(resize: "#{size}x#{size}!")
+
+  def type_avatar(type)
+    @image = type.image
+    if @image.attached?
+      @image_type = image_tag (@image.url)
+    else
+      @image_type = image_tag("download.png")
     end
+    return @image_type
   end
+
 end
