@@ -2,7 +2,7 @@
   <%= form_for(@type,  remote: true ) do |form| %>
 
     <div class="login">
-      <h2>Create Type</h2>
+      <h2>Edit Type</h2>
       <% if type.errors.any? %>
         <div id="error_explanation">
           <h2><%= pluralize(type.errors.count, "error") %> prohibited this type from being saved:</h2>
@@ -19,23 +19,22 @@
         <%= form.label :name %>
         <%= form.text_field :name %>
       </div>
-
-      <div class="field" >
+      <div class="field limit_image">
         <%= type_avatar(type) %>
         <%= form.label :image %>
-        <%= form.file_field :image, id: "image_upload_id"%>
+        <%= form.file_field :image %>
       </div>
 
-      <div class="actions style-button-create">
+      <div class="actions style-button-edit">
         <%= form.submit %>
       </div>
 
     </div>
   <% end %>
 
-    <div class="center" id="close-show">
-      <button class="close_button">Close</button>
-    </div>
+  <div class="center" id="close-show-edit">
+    <button class="close_button">Close</button>
+  </div>
 
 
 </div>

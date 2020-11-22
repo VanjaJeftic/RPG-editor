@@ -1,3 +1,5 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
 <p id="notice"><%= notice %></p>
 
 <h1>Attributes</h1>
@@ -20,7 +22,7 @@
         <td><%= attribute.numerical %></td>
         <td><%= link_to 'Show', attribute %></td>
         <td><%= link_to 'Edit', edit_attribute_path(attribute) %></td>
-        <td><%= link_to 'Destroy', attribute, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Destroy', attribute, method: :delete, data: { confirm: 'Are you sure?', remote: true }, class: "delete" %></td>
       </tr>
     <% end %>
   </tbody>

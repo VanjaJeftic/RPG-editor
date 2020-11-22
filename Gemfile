@@ -58,3 +58,11 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'devise', '~> 4.2'
 
 gem 'rubocop'
+gem 'jquery-rails'
+gem 'record_tag_helper', '~> 1.0'
+
+gem 'bootstrap'
+
+gem 'popper_js', '~> 1.9', '>= 1.9.9'
+
+gem 'jquery-fileupload-rails'

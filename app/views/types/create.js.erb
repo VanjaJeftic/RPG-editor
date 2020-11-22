@@ -1,0 +1,16 @@
+$('form').hide();
+$('#types_table').append('<%= j render partial: "type", locals: {type: @type} %>');
+
+$( "tr" ).last().addClass("highlight");
+setTimeout(function() {
+    $( "tr" ).removeClass('highlight');
+}, 1000);
+
+$('.new-type-button').show();
+
+$('#close-show').hide();
+
+
+
+
+

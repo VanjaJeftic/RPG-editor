@@ -1,0 +1,12 @@
+$("#modal-window").html("<%= j render 'edit', type: @type %>");
+$("#modal-window").show();
+$( document ).ready(function() {
+    $('#close-show-edit').click(function(){
+        $("#modal-window").hide();
+        $('#close-show-edit').hide();
+    });
+
+});
+
+
+

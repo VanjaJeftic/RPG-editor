@@ -30,6 +30,7 @@ class TypesController < ApplicationController
     @type.user_id = current_user.id
     respond_to do |format|
       if @type.save
+        format.js
         format.html { redirect_to @type, notice: 'Type was successfully created.' }
         format.json { render :show, status: :created, location: @type }
       else
@@ -44,6 +45,7 @@ class TypesController < ApplicationController
   def update
     respond_to do |format|
       if @type.update(type_params)
+        format.js
         format.html { redirect_to @type, notice: 'Type was successfully updated.' }
         format.json { render :show, status: :ok, location: @type }
       else
@@ -58,6 +60,7 @@ class TypesController < ApplicationController
   def destroy
     @type.destroy
     respond_to do |format|
+      format.js
       format.html { redirect_to root_path, notice: 'Type was successfully destroyed.' }
       format.json { head :no_content }
     end
