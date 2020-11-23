@@ -4,8 +4,8 @@ module TypesHelper
     @image = type.image
     if @image.attached?
       @image_type = image_tag (@image)
-    else
-      @image_type = image_tag("download.png")
+      #else
+      # @image_type = image_tag("download.png")
     end
     return @image_type
   end

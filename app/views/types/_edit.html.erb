@@ -19,10 +19,12 @@
         <%= form.label :name %>
         <%= form.text_field :name %>
       </div>
-      <div class="field limit_image">
+
+      <div class="field limit_image" id="image">
         <%= type_avatar(type) %>
         <%= form.label :image %>
         <%= form.file_field :image %>
+        <img id="blah" src="#" alt="Updated picture"/>
       </div>
 
       <div class="actions style-button-edit">

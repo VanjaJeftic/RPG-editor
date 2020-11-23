@@ -1,39 +1,70 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 
-<p id="notice"><%= notice %></p>
 
-
-<div class="container">
-  <div class="page-header">
-    <h1>Types</h1>
+<div class="header">
+  <div class="screen-page">
+    <h1>Welcome!</h1>
+      <h2><%= current_user.username %></h2>
+      <div class="button-right">
+        <%= link_to "Sign Out", destroy_user_session_path, method: :delete %>
+      </div>
   </div>
 </div>
 
-<div class="bottom-margin">
-  <table id="types_table">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Avatar</th>
-        <th colspan="3"></th>
-      </tr>
-    </thead>
+<div class="content">
+  <section class="content">
+    <p id="notice"><%= notice %></p>
+    <%= flash[:notice] %>
 
-      <% @types.each do |type| %>
-        <%= render type %>
-      <% end %>
-  </table>
+    <div class="container">
+      <div class="page-header">
+        <h1>Types</h1>
+      </div>
+    </div>
+
+    <div class="bottom-margin">
+      <table id="types_table">
+        <thead>
+        <tr>
+          <th>Name</th>
+          <th>Avatar</th>
+          <th colspan="3"></th>
+        </tr>
+        </thead>
+
+        <% @types.each do |type| %>
+          <%= render type %>
+        <% end %>
+      </table>
+    </div>
+
+    <br>
+
+
+    <%= link_to 'Create New Type', new_type_path, remote: true, class: "new-type-button" %>
+
+
+    <div id="modal-window" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content"></div>
+      </div>
+    </div>
+
+  </section>
+
 </div>
 
-<br>
 
 
-<%= link_to 'Create New Type', new_type_path, remote: true, class: "new-type-button" %>
 
 
-<div id="modal-window" role="dialog" aria-labelledby="myModalLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content"></div>
-  </div>
-</div>
+
+
+
+
+
+
+
+
+
 

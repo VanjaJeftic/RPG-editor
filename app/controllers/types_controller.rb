@@ -4,7 +4,8 @@ class TypesController < ApplicationController
   # GET /types
   # GET /types.json
   def index
-    @types = Type.where(:user_id => current_user.id)
+    #@types = Type.where(:user_id => current_user.id)
+    @types = Type.all
   end
 
   # GET /types/1
@@ -58,11 +59,26 @@ class TypesController < ApplicationController
   # DELETE /types/1
   # DELETE /types/1.json
   def destroy
-    @type.destroy
-    respond_to do |format|
-      format.js
-      format.html { redirect_to root_path, notice: 'Type was successfully destroyed.' }
-      format.json { head :no_content }
+    @user_id = @type.user_id
+
+    if current_user.id == @user_id
+      puts "ttttttttttttttessssssssssssssssssssssss"
+      @type.destroy
+      respond_to do |format|
+        format.js
+        format.html { redirect_to type_path, notice: 'Type was successfully destroyed.' }
+        format.json { head :no_content }
+      end
+    else
+      respond_to do |format|
+      puts " tuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu"
+      #flash.now[:error] = "Your book was not found"
+      flash.now[:error] = "Invalid name/password combination"
+      puts "ovdeeeeeeeeeeeeeeeeeee"
+      format.html { redirect_to types_path}
+      puts "heooooooooooooooooooooo"
+      #flash.now[:alert] = "Type cannot be deleted by user who didn't create it."e
+      end
     end
   end
 

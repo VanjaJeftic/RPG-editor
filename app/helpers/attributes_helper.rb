@@ -3,8 +3,8 @@ module AttributesHelper
     @icon = attribute.icon
     if @icon.attached?
       @icon_attribute = image_tag (@icon)
-    else
-      @icon_attribute = image_tag("icon_default.jpeg")
+      #else
+      #@icon_attribute = image_tag("icon_default.jpeg")
     end
     return @icon_attribute
   end
