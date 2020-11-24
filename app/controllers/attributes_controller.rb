@@ -1,40 +1,41 @@
 class AttributesController < ApplicationController
   before_action :set_attribute, only: [:show, :edit, :update, :destroy]
 
-  # GET /attributes
-  # GET /attributes.json
   def index
-    @attribute_type_id = params[:type_id]
+    attribute = Type.find(params[:type_id])
+    @attribute_type_name = attribute.name
+    @attribute_type_id = attribute.id
+
     @attributes = Attribute.where(:type_id => params[:type_id])
     respond_to do |format|
       format.js
     end
   end
 
-  # GET /attributes/1
-  # GET /attributes/1.json
   def show
   end
 
-  # GET /attributes/new
   def new
     @attribute = Attribute.new
-    @attribute_type_id = params[:type_id]
+    attribute = Type.find(params[:type_id])
+
+    @attribute_type_id = attribute.id
+    respond_to do |format|
+      format.js
+    end
   end
 
-  # GET /attributes/1/edit
   def edit
   end
 
-  # POST /attributes
-  # POST /attributes.json
   def create
-    puts "teeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
-    puts attribute_params
+
+    attribute_params[:type_id] = params[:type_id]
     @attribute = Attribute.new(attribute_params)
-    #@attribute.type_id = params[:type_id]
     respond_to do |format|
       if @attribute.save
+        puts "kreiranjeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee2222222222222222222222222222e"
+        format.js
         format.html { redirect_to @attribute, notice: 'Attribute was successfully created.' }
         format.json { render :show, status: :created, location: @attribute }
       else
@@ -44,8 +45,6 @@ class AttributesController < ApplicationController
     end
   end
 
-  # PATCH/PUT /attributes/1
-  # PATCH/PUT /attributes/1.json
   def update
     respond_to do |format|
       if @attribute.update(attribute_params)
@@ -58,8 +57,6 @@ class AttributesController < ApplicationController
     end
   end
 
-  # DELETE /attributes/1
-  # DELETE /attributes/1.json
   def destroy
     @attribute.destroy
     respond_to do |format|

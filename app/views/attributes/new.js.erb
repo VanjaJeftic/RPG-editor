@@ -1,3 +1,9 @@
 $('#modal-window-new-attribute').find(".modal-content").html("<%= j (render 'new', attribute: @attribute) %>");
 $('#modal-window-new-attribute').modal('show');
 
+$( document ).ready(function() {
+    $("#submit-button").click(function(){
+        $('#modal-window-new-attribute').modal('hide');
+    });
+
+});

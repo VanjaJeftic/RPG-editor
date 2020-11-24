@@ -1,0 +1,8 @@
+console.log("stigleeeeeeeeeeeeee");
+$('#attributes_table').append('<%= j render partial: "attribute", locals: {attribute: @attribute} %>');
+
+console.log("testiram");
+$( "tr" ).last().addClass("highlight");
+setTimeout(function() {
+    $( "tr" ).removeClass('highlight');
+}, 1000);
