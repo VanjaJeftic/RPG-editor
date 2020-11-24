@@ -1,5 +1,7 @@
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
 <div class="header">
   <div class="screen-page">
@@ -14,13 +16,24 @@
 <div class="content">
   <section class="content">
     <p id="notice"><%= notice %></p>
-    <%= flash[:notice] %>
+
+    <p>
+    <div class="inner highlight-red", id="error-message"></div>
+    </p>
 
     <div class="container">
       <div class="page-header">
+
+      <span >
+    <%= link_to 'Show all created types', types_path(:show_all => true), class: "all-type-button"%>
+        <%= link_to 'Show types you created', types_path(:show_all => false), class: "all-type-button"%>
+    </span>
+        <br>
+        <br>
         <h1>Types</h1>
       </div>
     </div>
+
 
     <div class="bottom-margin">
       <table id="types_table">
@@ -28,7 +41,7 @@
         <tr>
           <th>Name</th>
           <th>Avatar</th>
-          <th colspan="3"></th>
+          <th colspan="4"></th>
         </tr>
         </thead>
 
@@ -37,22 +50,18 @@
         <% end %>
       </table>
     </div>
-
     <br>
+    <%= link_to 'Create New Type', new_type_path, {:remote => true, 'data-toggle'=> "modal", 'data-target'=> "#myModal", 'class'=> "new-type-button" } %>
 
+    <%= render 'modals' %>
 
-    <%= link_to 'Create New Type', new_type_path, remote: true, class: "new-type-button" %>
-
-
-    <div id="modal-window" role="dialog" aria-labelledby="myModalLabel">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content"></div>
-      </div>
-    </div>
-
-  </section>
+</section>
 
 </div>
+
+
+
+
 
 
 

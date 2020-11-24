@@ -235,6 +235,11 @@ tr:nth-child(even) {
     background-color: greenyellow !important;
 }
 
+.highlight-red{
+    background-color: greenyellow;
+    color: #B00100;
+}
+
 .center {
     text-align: center;
 }
@@ -260,6 +265,10 @@ tr:nth-child(even) {
     text-align: left;
 }
 
+.align-center{
+    align: center;
+}
+
 .new-type-button{
     color: white;
     padding: 20px 40px;
@@ -276,6 +285,24 @@ tr:nth-child(even) {
     background-color: white;
     border: 1px solid green;
     color: green;
+}
+
+.all-type-button{
+    color: white;
+    padding: 20px 40px;
+    background-color: lightsalmon;
+    border: 1px solid white;
+    border-radius: 50%;
+    font-weight: 700;
+    font-size: 20px;
+    transition: 0.5s;
+    width: 170px;
+}
+
+.all-type-button:hover {
+    background-color: white;
+    border: 1px solid orange;
+    color: lightsalmon;
 }
 
 .bottom-margin{
@@ -307,5 +334,5 @@ tr:nth-child(even) {
 }
 
 .limit_image img{
-    width: 300px;
+    width: 150px;
 }

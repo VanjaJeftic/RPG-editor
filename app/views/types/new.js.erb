@@ -1,14 +1,5 @@
-$('.new-type-button').after("<%= j render 'form', type: @type %>")
-$('.new-type-button').hide()
-
-$( document ).ready(function() {
-    $("#close-show").click(function(){
-        $('form').hide();
-        $('#close-show').hide();
-        $('.new-type-button').show()
-    });
-
-});
+$('#myModal').find(".modal-content").html("<%= j (render 'new', type: @type) %>");
+$('#myModal').modal('show');
 
 function readURL(input) {
     if (input.files && input.files[0]) {
@@ -22,5 +13,12 @@ function readURL(input) {
 
 $("#type_image").change(function(){
     readURL(this);
+});
+
+$( document ).ready(function() {
+    $("#submit-button").click(function(){
+        $('#myModal').modal('hide');
+    });
+
 });
 
