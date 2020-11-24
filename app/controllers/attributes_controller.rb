@@ -6,6 +6,9 @@ class AttributesController < ApplicationController
   def index
     @attribute_type_id = params[:type_id]
     @attributes = Attribute.where(:type_id => params[:type_id])
+    respond_to do |format|
+      format.js
+    end
   end
 
   # GET /attributes/1

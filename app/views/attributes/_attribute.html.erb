@@ -1,0 +1,8 @@
+<tr id="<%= dom_id attribute %>">
+  <td><%= attribute.name %></td>
+  <td><%= attribute.numerical %></td>
+  <td><%= image_tag(attribute.icon, style: "width: 5%") if attribute.icon.attached?%></td>
+  <td><%= link_to 'Show', attribute %></td>
+  <td><%= link_to 'Edit', edit_attribute_path(attribute) %></td>
+  <td><%= link_to 'Destroy', attribute, method: :delete, data: { confirm: 'Are you sure?', remote: true }, class: "delete" %></td>
+</tr>

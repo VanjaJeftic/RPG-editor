@@ -65,4 +65,4 @@ gem 'popper_js', '~> 1.9', '>= 1.9.9'
 
 gem 'jquery-fileupload-rails'
 
-gem 'pg_search',   '~> 1.0.3'
+

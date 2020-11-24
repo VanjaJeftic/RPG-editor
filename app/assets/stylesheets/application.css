@@ -336,3 +336,7 @@ tr:nth-child(even) {
 .limit_image img{
     width: 150px;
 }
+
+.max-width-1000 {
+    max-width: 1000px !important;
+}
