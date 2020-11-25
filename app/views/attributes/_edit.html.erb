@@ -1,17 +1,15 @@
 <div class="modal-header">
-  <h4 class="modal-title">Create New Attribute</h4>
+  <h4 class="modal-title">Create new type</h4>
   <button type="button" class="close" data-dismiss="modal">&times;</button>
 </div>
 
 <div class="modal-body">
   <div class="center">
-      <%= form_for(@attribute, remote: true) do |form| %>
-
-        <div class="login">
+    <%= form_with(model: attribute, remote: true) do |form| %>
+      <div class="login">
         <% if attribute.errors.any? %>
           <div id="error_explanation">
             <h2><%= pluralize(attribute.errors.count, "error") %> prohibited this attribute from being saved:</h2>
-
             <ul>
               <% attribute.errors.full_messages.each do |message| %>
                 <li><%= message %></li>
@@ -34,22 +32,22 @@
           <%= form.text_field :numerical %>
         </div>
 
-        <div class="field limit_image", id="image">
+        <h6>Icon</h6>
+        <div class="field limit_image" id="image">
           <%= attribute_avatar(attribute) %>
-          <%= form.label :icon %>
           <%= form.file_field :icon %>
-          <img id="blah" src="#" />
+          <img class="limit_image" id="blah" src="#" alt="Updated image"/>
         </div>
 
-        <div class="actions style-button-create">
-          <button id="submit-button">
+        <div class="actions">
           <%= form.submit %>
-          </button>
         </div>
-      <% end %>
-    </div>
+
+        </div>
+    <% end %>
   </div>
 </div>
+
 
 <div class="modal-footer">
   <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

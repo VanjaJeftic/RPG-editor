@@ -2,9 +2,9 @@ class AttributesController < ApplicationController
   before_action :set_attribute, only: [:show, :edit, :update, :destroy]
 
   def index
-    attribute = Type.find(params[:type_id])
-    @attribute_type_name = attribute.name
-    @attribute_type_id = attribute.id
+    type = Type.find(params[:type_id])
+    @attribute_type_name = type.name
+    @attribute_type_id = type.id
 
     @attributes = Attribute.where(:type_id => params[:type_id])
     respond_to do |format|
@@ -13,6 +13,9 @@ class AttributesController < ApplicationController
   end
 
   def show
+    respond_to do |format|
+      format.js
+    end
   end
 
   def new
@@ -26,15 +29,15 @@ class AttributesController < ApplicationController
   end
 
   def edit
+    attribute = Type.find(params[:type_id])
+    @attribute_type_id = attribute.id
   end
 
   def create
-
     attribute_params[:type_id] = params[:type_id]
     @attribute = Attribute.new(attribute_params)
     respond_to do |format|
       if @attribute.save
-        puts "kreiranjeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee2222222222222222222222222222e"
         format.js
         format.html { redirect_to @attribute, notice: 'Attribute was successfully created.' }
         format.json { render :show, status: :created, location: @attribute }
@@ -48,6 +51,7 @@ class AttributesController < ApplicationController
   def update
     respond_to do |format|
       if @attribute.update(attribute_params)
+        format.js
         format.html { redirect_to @attribute, notice: 'Attribute was successfully updated.' }
         format.json { render :show, status: :ok, location: @attribute }
       else
@@ -67,12 +71,10 @@ class AttributesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_attribute
       @attribute = Attribute.find(params[:id])
     end
 
-    # Only allow a list of trusted parameters through.
     def attribute_params
       params.require(:attribute).permit(:name, :numerical, :value, :type_id, :icon)
     end
