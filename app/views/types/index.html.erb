@@ -23,7 +23,6 @@
 
     <div class="container">
       <div class="page-header">
-
       <span >
     <%= link_to 'Show all created types', types_path(:show_all => true), class: "all-type-button"%>
         <%= link_to 'Show types you created', types_path(:show_all => false), class: "all-type-button"%>
@@ -34,6 +33,7 @@
       </div>
     </div>
 
+    <%= paginate @types%>
 
     <div class="bottom-margin">
       <table id="types_table">
@@ -49,10 +49,11 @@
           <%= render type %>
         <% end %>
       </table>
+
+      <%= paginate @types%>
     </div>
     <br>
     <%= link_to 'Create New Type', new_type_path, {:remote => true, 'data-toggle'=> "modal", 'data-target'=> "#myModal", 'class'=> "new-type-button" } %>
-
     <%= render 'modals' %>
 
 </section>

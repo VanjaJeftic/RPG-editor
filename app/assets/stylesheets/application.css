@@ -266,7 +266,7 @@ tr:nth-child(even) {
 }
 
 .align-center{
-    align: center;
+    text-align: center;
 }
 
 .new-type-button{
@@ -339,4 +339,8 @@ tr:nth-child(even) {
 
 .max-width-1000 {
     max-width: 1000px !important;
+}
+
+.h1-value{
+    font-size: 20px;
 }

@@ -5,17 +5,17 @@ class AttributesControllerTest < ActionDispatch::IntegrationTest
     @attribute = attributes(:one)
   end
 
-  test "should get index" do
+  test 'should get index' do
     get attributes_url
     assert_response :success
   end
 
-  test "should get new" do
+  test 'should get new' do
     get new_attribute_url
     assert_response :success
   end
 
-  test "should create attribute" do
+  test 'should create attribute' do
     assert_difference('Attribute.count') do
       post attributes_url, params: { attribute: { name: @attribute.name, numerical: @attribute.numerical, type_id: @attribute.type_id, value: @attribute.value } }
     end
@@ -23,22 +23,22 @@ class AttributesControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to attribute_url(Attribute.last)
   end
 
-  test "should show attribute" do
+  test 'should show attribute' do
     get attribute_url(@attribute)
     assert_response :success
   end
 
-  test "should get edit" do
+  test 'should get edit' do
     get edit_attribute_url(@attribute)
     assert_response :success
   end
 
-  test "should update attribute" do
+  test 'should update attribute' do
     patch attribute_url(@attribute), params: { attribute: { name: @attribute.name, numerical: @attribute.numerical, type_id: @attribute.type_id, value: @attribute.value } }
     assert_redirected_to attribute_url(@attribute)
   end
 
-  test "should destroy attribute" do
+  test 'should destroy attribute' do
     assert_difference('Attribute.count', -1) do
       delete attribute_url(@attribute)
     end

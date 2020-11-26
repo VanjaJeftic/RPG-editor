@@ -1,1 +1,1 @@
-json.array! @attributes, partial: "attributes/attribute", as: :attribute
+json.array! @attributes, partial: 'attributes/attribute', as: :attribute

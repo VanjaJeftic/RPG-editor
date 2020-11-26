@@ -2,13 +2,13 @@ class TypesController < ApplicationController
   before_action :set_type, only: [:show, :edit, :update, :destroy]
 
   def index
-    @types = Type.where(:user_id => current_user.id)
-
-   if params[:show_all] == 'true'
-     @types= Type.all
-   else
-     @types = Type.where(:user_id => current_user.id)
-   end
+    self.params = params.permit!
+    @types = Type.where(user_id: current_user.id).page(params[:page]).per(5)
+    @types = if params[:show_all] == 'true'
+               Type.all.page(params[:page]).per(5)
+             else
+               Type.where(user_id: current_user.id).page(params[:page]).per(5)
+             end
 
   end
 
@@ -66,25 +66,23 @@ class TypesController < ApplicationController
       end
     else
       respond_to do |format|
-          format.js {
-            render  :template => "types/destroy_failed.js.erb",
-                    :layout => false
-          }
+        format.js do
+          render  template: 'types/destroy_failed.js.erb',
+                  layout: false
+        end
 
         format.json { head :no_content }
       end
     end
   end
 
-
-
-
   private
-    def set_type
-      @type = Type.find(params[:id])
-    end
 
-    def type_params
-      params.require(:type).permit(:name, :image, :user_id, :show_all)
-    end
+  def set_type
+    @type = Type.find(params[:id])
+  end
+
+  def type_params
+    params.require(:type).permit(:name, :image, :user_id, :show_all, :page)
+  end
 end

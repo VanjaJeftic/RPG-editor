@@ -2,11 +2,13 @@ class AttributesController < ApplicationController
   before_action :set_attribute, only: [:show, :edit, :update, :destroy]
 
   def index
+    self.params = params.permit!
     type = Type.find(params[:type_id])
     @attribute_type_name = type.name
     @attribute_type_id = type.id
 
-    @attributes = Attribute.where(:type_id => params[:type_id])
+    @attributes = Attribute.where(type_id: params[:type_id]).page(params[:page]).per(5)
+
     respond_to do |format|
       format.js
     end
@@ -71,13 +73,12 @@ class AttributesController < ApplicationController
   end
 
   private
-    def set_attribute
-      @attribute = Attribute.find(params[:id])
-    end
 
-    def attribute_params
-      params.require(:attribute).permit(:name, :numerical, :value, :type_id, :icon)
-    end
+  def set_attribute
+    @attribute = Attribute.find(params[:id])
+  end
 
-
+  def attribute_params
+    params.require(:attribute).permit(:name, :numerical, :value, :type_id, :icon)
+  end
 end

@@ -8,52 +8,52 @@ module ActiveRecord
 
       # Converts an arel AST to SQL
       def to_sql(arel_or_sql_string, binds = [])
-        sql, _ = to_sql_and_binds(arel_or_sql_string, binds)
+        sql, = to_sql_and_binds(arel_or_sql_string, binds)
         sql
       end
 
       def to_sql_and_binds(arel_or_sql_string, binds = [], preparable = nil) # :nodoc:
-      if arel_or_sql_string.respond_to?(:ast)
-        unless binds.empty?
-          raise "Passing bind parameters with an arel AST is forbidden. " \
-              "The values must be stored on the AST directly"
-        end
-
-        collector = collector()
-
-        if prepared_statements
-          collector.preparable = true
-          sql, binds = visitor.compile(arel_or_sql_string.ast, collector)
-
-          if binds.length > bind_params_length
-            unprepared_statement do
-              return to_sql_and_binds(arel_or_sql_string)
-            end
+        if arel_or_sql_string.respond_to?(:ast)
+          unless binds.empty?
+            raise 'Passing bind parameters with an arel AST is forbidden. ' \
+                'The values must be stored on the AST directly'
           end
-          preparable = collector.preparable
+
+          collector = collector()
+
+          if prepared_statements
+            collector.preparable = true
+            sql, binds = visitor.compile(arel_or_sql_string.ast, collector)
+
+            if binds.length > bind_params_length
+              unprepared_statement do
+                return to_sql_and_binds(arel_or_sql_string)
+              end
+            end
+            preparable = collector.preparable
+          else
+            sql = visitor.compile(arel_or_sql_string.ast, collector)
+          end
+          [sql.freeze, binds, preparable]
         else
-          sql = visitor.compile(arel_or_sql_string.ast, collector)
+          arel_or_sql_string = arel_or_sql_string.dup.freeze unless arel_or_sql_string.frozen?
+          [arel_or_sql_string, binds, preparable]
         end
-        [sql.freeze, binds, preparable]
-      else
-        arel_or_sql_string = arel_or_sql_string.dup.freeze unless arel_or_sql_string.frozen?
-        [arel_or_sql_string, binds, preparable]
-      end
       end
       private :to_sql_and_binds
 
       # This is used in the StatementCache object. It returns an object that
       # can be used to query the database repeatedly.
       def cacheable_query(klass, arel) # :nodoc:
-      if prepared_statements
-        sql, binds = visitor.compile(arel.ast, collector)
-        query = klass.query(sql)
-      else
-        collector = klass.partial_query_collector
-        parts, binds = visitor.compile(arel.ast, collector)
-        query = klass.partial_query(parts)
-      end
-      [query, binds]
+        if prepared_statements
+          sql, binds = visitor.compile(arel.ast, collector)
+          query = klass.query(sql)
+        else
+          collector = klass.partial_query_collector
+          parts, binds = visitor.compile(arel.ast, collector)
+          query = klass.partial_query(parts)
+        end
+        [query, binds]
       end
 
       # Returns an ActiveRecord::Result instance.
@@ -94,15 +94,15 @@ module ActiveRecord
       end
 
       def query_value(sql, name = nil) # :nodoc:
-      single_value_from_rows(query(sql, name))
+        single_value_from_rows(query(sql, name))
       end
 
       def query_values(sql, name = nil) # :nodoc:
-      query(sql, name).map(&:first)
+        query(sql, name).map(&:first)
       end
 
       def query(sql, name = nil) # :nodoc:
-      exec_query(sql, name).rows
+        exec_query(sql, name).rows
       end
 
       # Determines whether the SQL statement is a write query.
@@ -122,14 +122,14 @@ module ActiveRecord
       # Executes +sql+ statement in the context of this connection using
       # +binds+ as the bind substitutes. +name+ is logged along with
       # the executed +sql+ statement.
-      def exec_query(sql, name = "SQL", binds = [], prepare: false)
+      def exec_query(sql, name = 'SQL', binds = [], prepare: false)
         raise NotImplementedError
       end
 
       # Executes insert +sql+ statement in the context of this connection using
       # +binds+ as the bind substitutes. +name+ is logged along with
       # the executed +sql+ statement.
-      def exec_insert(sql, name = nil, binds = [], pk = nil, sequence_name = nil)
+      def exec_insert(sql, name = nil, binds = [], pk = nil, _sequence_name = nil)
         sql, binds = sql_for_insert(sql, pk, binds)
         exec_query(sql, name, binds)
       end
@@ -149,11 +149,11 @@ module ActiveRecord
       end
 
       def exec_insert_all(sql, name) # :nodoc:
-      exec_query(sql, name)
+        exec_query(sql, name)
       end
 
       def explain(arel, binds = []) # :nodoc:
-      raise NotImplementedError
+        raise NotImplementedError
       end
 
       # Executes an INSERT query and returns the new record's ID
@@ -189,16 +189,16 @@ module ActiveRecord
       end
 
       def truncate_tables(*table_names) # :nodoc:
-      table_names -= [schema_migration.table_name, InternalMetadata.table_name]
+        table_names -= [schema_migration.table_name, InternalMetadata.table_name]
 
-      return if table_names.empty?
+        return if table_names.empty?
 
-      with_multi_statements do
-        disable_referential_integrity do
-          statements = build_truncate_statements(table_names)
-          execute_batch(statements, "Truncate Tables")
+        with_multi_statements do
+          disable_referential_integrity do
+            statements = build_truncate_statements(table_names)
+            execute_batch(statements, 'Truncate Tables')
+          end
         end
-      end
       end
 
       # Runs the given block in a database transaction, and returns the result
@@ -310,9 +310,8 @@ module ActiveRecord
       # isolation level.
       def transaction(requires_new: nil, isolation: nil, joinable: true)
         if !requires_new && current_transaction.joinable?
-          if isolation
-            raise ActiveRecord::TransactionIsolationError, "cannot set isolation when joining a transaction"
-          end
+          raise ActiveRecord::TransactionIsolationError, 'cannot set isolation when joining a transaction' if isolation
+
           yield
         else
           transaction_manager.within_new_transaction(isolation: isolation, joinable: joinable) { yield }
@@ -328,10 +327,8 @@ module ActiveRecord
                :disable_lazy_transactions!, :enable_lazy_transactions!, to: :transaction_manager
 
       def mark_transaction_written_if_write(sql) # :nodoc:
-      transaction = current_transaction
-      if transaction.open?
-        transaction.written ||= write_query?(sql)
-      end
+        transaction = current_transaction
+        transaction.written ||= write_query?(sql) if transaction.open?
       end
 
       def transaction_open?
@@ -349,26 +346,28 @@ module ActiveRecord
       end
 
       # Begins the transaction (and turns off auto-committing).
-      def begin_db_transaction()    end
+      def begin_db_transaction
+      end
 
       def transaction_isolation_levels
         {
-            read_uncommitted: "READ UNCOMMITTED",
-            read_committed:   "READ COMMITTED",
-            repeatable_read:  "REPEATABLE READ",
-            serializable:     "SERIALIZABLE"
+          read_uncommitted: 'READ UNCOMMITTED',
+          read_committed: 'READ COMMITTED',
+          repeatable_read: 'REPEATABLE READ',
+          serializable: 'SERIALIZABLE'
         }
       end
 
       # Begins the transaction with the isolation level set. Raises an error by
       # default; adapters that support setting the isolation level should implement
       # this method.
-      def begin_isolated_db_transaction(isolation)
-        raise ActiveRecord::TransactionIsolationError, "adapter does not support setting transaction isolation"
+      def begin_isolated_db_transaction(_isolation)
+        raise ActiveRecord::TransactionIsolationError, 'adapter does not support setting transaction isolation'
       end
 
       # Commits the transaction (and turns on auto-committing).
-      def commit_db_transaction()   end
+      def commit_db_transaction
+      end
 
       # Rolls back the transaction (and turns on auto-committing). Must be
       # done if the transaction block raises an exception or returns false.
@@ -376,13 +375,14 @@ module ActiveRecord
         exec_rollback_db_transaction
       end
 
-      def exec_rollback_db_transaction() end #:nodoc:
+      def exec_rollback_db_transaction
+      end #:nodoc:
 
       def rollback_to_savepoint(name = nil)
         exec_rollback_to_savepoint(name)
       end
 
-      def default_sequence_name(table, column)
+      def default_sequence_name(_table, _column)
         nil
       end
 
@@ -397,7 +397,7 @@ module ActiveRecord
       # We keep this method to provide fallback
       # for databases like sqlite that do not support bulk inserts.
       def insert_fixture(fixture, table_name)
-        execute(build_fixture_sql(Array.wrap(fixture), table_name), "Fixture Insert")
+        execute(build_fixture_sql(Array.wrap(fixture), table_name), 'Fixture Insert')
       end
 
       def insert_fixtures_set(fixture_set, tables_to_delete = [])
@@ -408,14 +408,14 @@ module ActiveRecord
         with_multi_statements do
           disable_referential_integrity do
             transaction(requires_new: true) do
-              execute_batch(statements, "Fixtures Load")
+              execute_batch(statements, 'Fixtures Load')
             end
           end
         end
       end
 
-      def empty_insert_statement_value(primary_key = nil)
-        "DEFAULT VALUES"
+      def empty_insert_statement_value(_primary_key = nil)
+        'DEFAULT VALUES'
       end
 
       # Sanitizes the given LIMIT parameter in order to prevent SQL injection.
@@ -436,24 +436,25 @@ module ActiveRecord
       # are not quotable. In this case we want to convert
       # the column value to YAML.
       def with_yaml_fallback(value) # :nodoc:
-      if value.is_a?(Hash) || value.is_a?(Array)
-        YAML.dump(value)
-      else
-        value
-      end
+        if value.is_a?(Hash) || value.is_a?(Array)
+          YAML.dump(value)
+        else
+          value
+        end
       end
 
       private
+
       def execute_batch(statements, name = nil)
         statements.each do |statement|
           execute(statement, name)
         end
       end
 
-      DEFAULT_INSERT_VALUE = Arel.sql("DEFAULT").freeze
+      DEFAULT_INSERT_VALUE = Arel.sql('DEFAULT').freeze
       private_constant :DEFAULT_INSERT_VALUE
 
-      def default_insert_value(column)
+      def default_insert_value(_column)
         DEFAULT_INSERT_VALUE
       end
 
@@ -485,12 +486,12 @@ module ActiveRecord
         if values_list.size == 1
           values = values_list.shift
           new_values = []
-          columns.each_key.with_index { |column, i|
+          columns.each_key.with_index do |column, i|
             unless values[i].equal?(DEFAULT_INSERT_VALUE)
               new_values << values[i]
               manager.columns << table[column]
             end
-          }
+          end
           values_list << new_values
         else
           columns.each_key { |column| manager.columns << table[column] }
@@ -503,6 +504,7 @@ module ActiveRecord
       def build_fixture_statements(fixture_set)
         fixture_set.map do |table_name, fixtures|
           next if fixtures.empty?
+
           build_fixture_sql(fixtures, table_name)
         end.compact
       end
@@ -534,7 +536,7 @@ module ActiveRecord
         exec_query(sql, name, binds, prepare: true)
       end
 
-      def sql_for_insert(sql, pk, binds)
+      def sql_for_insert(sql, _pk, binds)
         [sql, binds]
       end
 
