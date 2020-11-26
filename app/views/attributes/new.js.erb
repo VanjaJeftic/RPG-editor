@@ -21,3 +21,49 @@ $( document ).ready(function() {
     });
 
 });
+
+$( document ).ready(function() {
+    $("#submit-button").click(function(e){
+
+        $("#new_attribute").validate({
+            //error place
+            errorPlacement: function (error, element) {
+                error.insertAfter(element);
+            },
+            rules: {
+                "attribute[name]": {
+                    required: true,
+                    maxlength: 30
+                },
+                "attribute[icon]": {
+                    required: true
+                },
+                "attribute[numerical]": {
+                    required: true,
+                    digits: true
+                },
+            },
+            // error messages
+            messages: {
+                name: {
+                    required: "Name is required.",
+                    maxlength: "Name must be less than 30"
+                },
+                icon: {
+                    required: "Image is required"
+                },
+                numerical: {
+                    required: "Numeric value is required",
+                    digits: "Integer only. No sign allowed."
+                }
+            },
+            success: function (){
+                $('#modal-window-new-attribute').modal('hide').on("submit");
+            }
+
+        });
+
+
+    });
+
+});

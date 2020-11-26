@@ -5,24 +5,29 @@
 
 <div class="modal-body">
   <div class="center">
-    <%= form_for(@type,  remote: true ) do |form| %>
+    <%= form_for(@type,  remote: true) do |form| %>
 
       <div class="login">
-        <% if type.errors.any? %>
+        <% if @type.errors.any? %>
           <div id="error_explanation">
-            <h2><%= pluralize(type.errors.count, "error") %> prohibited this type from being saved:</h2>
+            <h2><%= pluralize(@type.errors.count, "error") %> prohibited this type from being saved:</h2>
 
             <ul>
-              <% type.errors.full_messages.each do |message| %>
+              <% @type.errors.full_messages.each do |message| %>
                 <li><%= message %></li>
               <% end %>
             </ul>
           </div>
         <% end %>
 
-        <div class="field">
+        <% @type.errors.full_messages.each do |error| %>
+          <li><%= error %></li>
+        <% end %>
+
+        <div class="field" >
           <%= form.label :name %>
-          <%= form.text_field :name %>
+          <%= form.text_field :name, id: "name-field"%>
+          <p id="message"></p>
         </div>
 
         <div class="field limit_image", id="image">
@@ -31,7 +36,6 @@
           <%= form.file_field :image %>
           <img id="blah" src="#" />
         </div>
-
 
         <div class="actions style-button-create">
           <button id="submit-button">

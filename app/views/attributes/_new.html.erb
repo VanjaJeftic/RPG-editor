@@ -7,18 +7,19 @@
   <div class="center">
       <%= form_for(@attribute, remote: true) do |form| %>
 
-        <div class="login">
-        <% if attribute.errors.any? %>
+
+        <% if @attribute.errors.any? %>
           <div id="error_explanation">
-            <h2><%= pluralize(attribute.errors.count, "error") %> prohibited this attribute from being saved:</h2>
+            <h2><%= pluralize(@attribute.errors.count, "error") %> prohibited this attribute from being saved:</h2>
 
             <ul>
-              <% attribute.errors.full_messages.each do |message| %>
+              <% @attribute.errors.full_messages.each do |message| %>
                 <li><%= message %></li>
               <% end %>
             </ul>
           </div>
         <% end %>
+          <div class="login">
 
         <div class="field">
           <%= form.hidden_field :type_id, value: @attribute_type_id %>

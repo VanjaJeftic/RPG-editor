@@ -66,3 +66,5 @@ gem 'popper_js', '~> 1.9', '>= 1.9.9'
 gem 'jquery-fileupload-rails'
 
 gem 'kaminari', '~> 0.16.3'
+
+gem "jquery-validation-rails"

@@ -344,3 +344,7 @@ tr:nth-child(even) {
 .h1-value{
     font-size: 20px;
 }
+
+.red-letter{
+    color: red;
+}

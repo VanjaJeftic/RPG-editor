@@ -7,6 +7,8 @@ class User < ApplicationRecord
   attr_writer :login
 
   validate :validate_username
+  validates :email, presence: true
+  validates :password, presence: true
 
   def login
     @login || username || email

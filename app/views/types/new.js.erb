@@ -16,9 +16,41 @@ $("#type_image").change(function(){
 });
 
 $( document ).ready(function() {
-    $("#submit-button").click(function(){
-        $('#myModal').modal('hide');
+    $("#submit-button").click(function(e){
+
+        $("#new_type").validate({
+            //error place
+            errorPlacement: function (error, element) {
+                error.insertAfter(element);
+            },
+            rules: {
+                "type[name]": {
+                    required: true,
+                    maxlength: 30
+                },
+                "type[image]": {
+                    required: true
+                }
+            },
+            // error messages
+            messages: {
+                name: {
+                    required: "Name is required.",
+                    maxlength: "Name must be less than 30"
+                },
+                image: {
+                    required: "Image is required"
+                }
+            },
+            success: function (){
+                  $('#myModal').modal('hide').on("submit");
+            }
+
+        });
+
+
     });
 
 });
+
 
