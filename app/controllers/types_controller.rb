@@ -59,6 +59,7 @@ class TypesController < ApplicationController
 
     if current_user.id == @user_id
       @type.destroy
+
       respond_to do |format|
         format.js
         format.html { redirect_to type_path, notice: 'Type was successfully destroyed.' }
