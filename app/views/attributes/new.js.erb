@@ -15,11 +15,8 @@ $("#attribute_icon").change(function(){
     readURL(this);
 });
 
-$( document ).ready(function() {
-    $("#submit-button").click(function(){
-        $('#modal-window-new-attribute').modal('hide');
-    });
-
+$("#close-button").click(function(e){
+    $('#modal-window-new-attribute').modal('hide');
 });
 
 $( document ).ready(function() {

@@ -287,6 +287,26 @@ tr:nth-child(even) {
     color: green;
 }
 
+.new-attribute-button{
+    text-align: center;
+    color: white;
+    padding: 20px 40px;
+    background-color: coral;
+    border: 1px solid white;
+    border-radius: 50%;
+    font-weight: 700;
+    font-size: 20px;
+    transition: 0.5s;
+    width: 170px;
+}
+
+.new-attribute-button:hover {
+    background-color: white;
+    border: 1px solid green;
+    color: green;
+}
+
+
 .all-type-button{
     color: white;
     padding: 20px 40px;
@@ -303,6 +323,23 @@ tr:nth-child(even) {
     background-color: white;
     border: 1px solid orange;
     color: lightsalmon;
+}
+
+.sign-out-type-button{
+    color: white;
+    padding: 20px 40px;
+    background-color: lightgoldenrodyellow;
+    border: 1px solid white;
+    border-radius: 50%;
+    font-weight: 700;
+    font-size: 20px;
+    transition: 0.5s;
+    width: 170px;
+}
+
+.sign-out-type-button:hover {
+    background-color: white;
+    border: 1px solid yellow;
 }
 
 .bottom-margin{
@@ -343,8 +380,11 @@ tr:nth-child(even) {
 
 .h1-value{
     font-size: 20px;
+    color: darkslategrey;
 }
 
 .red-letter{
     color: red;
 }
+
+

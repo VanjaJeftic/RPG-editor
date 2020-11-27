@@ -1,6 +1,5 @@
 <div class="modal-header">
   <h4 class="modal-title">Create new type</h4>
-  <button type="button" class="close" data-dismiss="modal">&times;</button>
 </div>
 
 <div class="modal-body">
@@ -40,7 +39,9 @@
         </div>
 
         <div class="actions">
-          <%= form.submit %>
+          <button id="update-button">
+            <%= form.submit %>
+          </button>
         </div>
 
         </div>
@@ -50,5 +51,5 @@
 
 
 <div class="modal-footer">
-  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+  <button type="button" class="btn btn-secondary" id="close-button">Close</button>
 </div>

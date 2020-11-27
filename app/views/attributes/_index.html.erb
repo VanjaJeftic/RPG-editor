@@ -1,6 +1,5 @@
 <div class="modal-header">
-  <h4 class="modal-title h1-value">List of Attributes <%=@attribute_type_name%></h4>
-  <button type="button" class="close" data-dismiss="modal">&times;</button>
+  <h4 class="modal-title h1-value">List of Character Attributes for Type: <%=@attribute_type_name%></h4>
 </div>
 
 <div class="modal-body">
@@ -26,9 +25,9 @@
   </table>
 
   <%=paginate @attributes, remote: true %>
-
-  <%= link_to 'New Attribute', new_attribute_path(:type_id => @attribute_type_id), {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#modal-window-new-attribute'} %>
 </div>
+
+<%= link_to 'New Attribute', new_attribute_path(:type_id => @attribute_type_id), {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#modal-window-new-attribute', 'class'=> "new-attribute-button"} %>
 
 <%= render 'modals' %>
 
@@ -40,7 +39,7 @@
 
 
 <div class="modal-footer">
-  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+  <button type="button" class="btn btn-secondary" id="close-button">Close</button>
 </div>
 
 

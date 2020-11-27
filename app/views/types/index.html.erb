@@ -7,10 +7,10 @@
 
 <div class="header">
   <div class="screen-page">
-    <h1>Welcome!</h1>
-      <h2><%= current_user.username %></h2>
+    <h1>RPG game editor</h1>
+      <h2>Welcome <%= current_user.username %>!</h2>
       <div class="button-right">
-        <%= link_to "Sign Out", destroy_user_session_path, method: :delete %>
+        <%= link_to "Sign Out", destroy_user_session_path, method: :delete, class: "sign-out-type-button" %>
       </div>
   </div>
 </div>
@@ -18,11 +18,9 @@
 <div class="content">
   <section class="content">
     <p id="notice"><%= notice %></p>
-
     <p>
     <div class="inner highlight-red", id="error-message"></div>
     </p>
-
     <div class="container">
       <div class="page-header">
       <span >
@@ -31,7 +29,7 @@
     </span>
         <br>
         <br>
-        <h1>Types</h1>
+        <h1>Character Types</h1>
       </div>
     </div>
 

@@ -33,6 +33,9 @@ class AttributesController < ApplicationController
   def edit
     attribute = Type.find(params[:type_id])
     @attribute_type_id = attribute.id
+    respond_to do |format|
+      format.js
+    end
   end
 
   def create
