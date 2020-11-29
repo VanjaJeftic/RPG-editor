@@ -12,6 +12,8 @@ RSpec.describe Type, type: :model do
     @type.save()
   end
 
+
+
   it 'is valid' do
     expect(@type).to be_valid
   end
@@ -32,9 +34,9 @@ RSpec.describe Type, type: :model do
     expect(@type.image).to be_attached
   end
 
-  it "is not valid without a title" do
-
+  it "is not valid without a name" do
+    @type.name = nil
+    expect(@type).to_not be_valid
   end
-  it "is not valid without a description"
 
 end
