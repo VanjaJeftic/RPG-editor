@@ -5,4 +5,5 @@ class Type < ApplicationRecord
   validates :image, presence: true
   validates :name, presence: true
 
+
 end

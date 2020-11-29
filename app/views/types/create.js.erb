@@ -1,5 +1,7 @@
-$('form').hide();
+//$('.last a')[0].click();
+
 $('#types_table').append('<%= j render partial: "type", locals: {type: @type} %>');
+
 
 $( "tr" ).last().addClass("highlight");
 setTimeout(function() {

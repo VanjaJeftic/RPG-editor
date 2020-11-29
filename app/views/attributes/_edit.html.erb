@@ -26,10 +26,15 @@
           <%= form.text_field :name %>
         </div>
 
+        <div class="red-error-message" id="message-name"></div>
+
         <div class="field">
           <%= form.label :numerical %>
           <%= form.text_field :numerical %>
         </div>
+
+        <div class="red-error-message" id="message-numerical"></div>
+        <div class="red-error-message" id="message-numerical-number"></div>
 
         <h6>Icon</h6>
         <div class="field limit_image" id="image">
@@ -37,6 +42,8 @@
           <%= form.file_field :icon %>
           <img class="limit_image" id="blah" src="#" alt="Updated image"/>
         </div>
+
+        <div class="red-error-message" id="message-icon"></div>
 
         <div class="actions">
           <button id="update-button">
@@ -51,5 +58,5 @@
 
 
 <div class="modal-footer">
-  <button type="button" class="btn btn-secondary" id="close-button">Close</button>
+  <button type="button" class="btn btn-secondary" id="close-button-edit-attribute">Close</button>
 </div>

@@ -1,3 +1,4 @@
+
 $('#modal-window-edit-attribute').find(".modal-content").html("<%= j (render 'edit', attribute: @attribute) %>");
 $('#modal-window-edit-attribute').modal('show');
 
@@ -15,13 +16,24 @@ $("#attribute_icon").change(function(){
     readURL(this);
 });
 
-$( document ).ready(function() {
-    $("#update-button").click(function(){
-        $('#modal-window-edit-attribute').modal('hide');
-    });
-
+$("#close-button-edit-attribute").click(function(e){
+    $('#modal-window-edit-attribute').modal('hide');
 });
 
-$("#close-button").click(function(e){
-    $('#modal-window-edit-attribute').modal('hide');
+$('#update-button').click(function(){
+    if($('#attribute_name').val() == ''){
+        var $messageDiv = $('#message-name'); // get the reference of the div
+        $messageDiv.show().html('Name can not be left blank!');
+    }else{
+        $('#message-name').hide();
+    }
+    if($('#attribute_numerical').val() == '' || isNaN($('#attribute_numerical').val())){
+        var $messageDiv = $('#message-numerical'); // get the reference of the div
+        $messageDiv.show().html('Numerical value can not be left blank and it must be number!');
+    }else{
+        $('#message-numerical').hide();
+    }
+    if($('#attribute_name').val() != '' && $('#attribute_numerical').val() != ''){
+        $('#modal-window-edit-attribute').modal('hide');
+    }
 });

@@ -1,6 +1,5 @@
 <div class="modal-header">
   <h4 class="modal-title">Create new type</h4>
-  <button type="button" class="close" data-dismiss="modal">&times;</button>
 </div>
 
 <div class="modal-body">
@@ -27,8 +26,9 @@
         <div class="field" >
           <%= form.label :name %>
           <%= form.text_field :name, id: "name-field"%>
-          <p id="message"></p>
         </div>
+
+        <div class="red-error-message" id="message-name"></div>
 
         <div class="field limit_image", id="image">
           <%= type_avatar(type) %>
@@ -36,6 +36,8 @@
           <%= form.file_field :image %>
           <img id="blah" src="#" />
         </div>
+
+        <div class="red-error-message" id="message-icon"></div>
 
         <div class="actions style-button-create">
           <button id="submit-button">
@@ -51,6 +53,6 @@
 </div>
 
 <div class="modal-footer">
-  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+  <button type="button" class="btn btn-secondary" id="close-button-new-type">Close</button>
 </div>
 

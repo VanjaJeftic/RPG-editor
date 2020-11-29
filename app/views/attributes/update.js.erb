@@ -1,4 +1,3 @@
-$("#modal-window-edit-attribute").hide();
 $('#<%= dom_id @attribute %>').replaceWith('<%= j render partial: "attribute", locals: {attribute: @attribute} %>');
 $('#<%= dom_id @attribute %>').addClass("highlight");
 

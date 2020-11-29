@@ -3,11 +3,12 @@ class TypesController < ApplicationController
 
   def index
     self.params = params.permit!
-    @types = Type.where(user_id: current_user.id).page(params[:page]).per(5)
+
+    @types = Type.where(user_id: current_user).page(params[:page]).per(5)
     @types = if params[:show_all] == 'true'
                Type.all.page(params[:page]).per(5)
              else
-               Type.where(user_id: current_user.id).page(params[:page]).per(5)
+               Type.where(user_id: current_user).page(params[:page]).per(5)
              end
 
   end
@@ -86,4 +87,6 @@ class TypesController < ApplicationController
   def type_params
     params.require(:type).permit(:name, :image, :user_id, :show_all, :page)
   end
+
+
 end

@@ -1,6 +1,6 @@
 $('#modal-window-show-attribute').find(".modal-content").html("<%= j (render 'show', attribute: @attribute) %>");
 $('#modal-window-show-attribute').modal('show');
 
-$("#button-close").click(function(e){
+$("#button-close-show-attribute").click(function(e){
     $('#modal-window-show-attribute').modal('hide');
 });

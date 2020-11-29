@@ -15,52 +15,35 @@ $("#attribute_icon").change(function(){
     readURL(this);
 });
 
-$("#close-button").click(function(e){
+$("#close-button-new-attribute").click(function(e){
     $('#modal-window-new-attribute').modal('hide');
 });
 
-$( document ).ready(function() {
-    $("#submit-button").click(function(e){
 
-        $("#new_attribute").validate({
-            //error place
-            errorPlacement: function (error, element) {
-                error.insertAfter(element);
-            },
-            rules: {
-                "attribute[name]": {
-                    required: true,
-                    maxlength: 30
-                },
-                "attribute[icon]": {
-                    required: true
-                },
-                "attribute[numerical]": {
-                    required: true,
-                    digits: true
-                },
-            },
-            // error messages
-            messages: {
-                name: {
-                    required: "Name is required.",
-                    maxlength: "Name must be less than 30"
-                },
-                icon: {
-                    required: "Image is required"
-                },
-                numerical: {
-                    required: "Numeric value is required",
-                    digits: "Integer only. No sign allowed."
-                }
-            },
-            success: function (){
-                $('#modal-window-new-attribute').modal('hide').on("submit");
-            }
-
-        });
-
-
-    });
-
+$('#submit-button').click(function(){
+    if($('#attribute_name').val() == ''){
+        var $messageDiv = $('#message-name'); // get the reference of the div
+        $messageDiv.show().html('Name can not be left blank!');
+        //alert('Name can not be left blank');
+    }else{
+        $('#message-name').hide();
+    }
+    if($('#attribute_numerical').val() == ''){
+        var $messageDiv = $('#message-numerical'); // get the reference of the div
+        $messageDiv.show().html('Numerical value can not be left blank!');
+    }else{
+        $('#message-numerical').hide();
+    }
+    if($('#attribute_icon').val()==''){
+        var $messageDiv = $('#message-icon'); // get the reference of the div
+        $messageDiv.show().html('Icon can not be left blank!');
+    }else{
+        $('#message-icon').hide();
+    }
+    if($('#attribute_name').val() != '' && $('#attribute_numerical').val() != '' && $('#attribute_icon').val() !=''){
+        $('#modal-window-new-attribute').modal('hide');
+    }
 });
+
+
+

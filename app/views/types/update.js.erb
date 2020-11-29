@@ -1,5 +1,3 @@
-$("#modal-window").hide();
-
 $('#<%= dom_id @type %>').replaceWith('<%= j render partial: "type", locals: {type: @type} %>');
 $('#<%= dom_id @type %>').addClass("highlight");
 
@@ -7,5 +5,4 @@ setTimeout(function() {
     $( "tr" ).removeClass('highlight');
 }, 1000);
 
-$('#close-show-edit').hide();
 

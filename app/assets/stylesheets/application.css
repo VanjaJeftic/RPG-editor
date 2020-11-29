@@ -387,4 +387,9 @@ tr:nth-child(even) {
     color: red;
 }
 
+.red-error-message{
+    color: white;
+    background-color: #B00100;
+}
+
 

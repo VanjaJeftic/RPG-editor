@@ -22,4 +22,18 @@ $( document ).ready(function() {
 
 });
 
+$("#close-button").click(function(e){
+    $('#modal-window-edit').modal('hide');
+});
 
+$('#update-button').click(function(){
+    if($('#name-field').val() == ''){
+        var $messageDiv = $('#message-name'); // get the reference of the div
+        $messageDiv.show().html('Name can not be left blank!');
+    }else{
+        $('#message-name').hide();
+    }
+    if($('#name-field').val() != ''){
+        $('#myModal').modal('hide');
+    }
+});
