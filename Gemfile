@@ -32,9 +32,9 @@ gem 'bootsnap', '>= 1.4.2', require: false
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
-  gem 'shoulda-matchers'
+  gem 'cucumber-rails', require: false
   gem 'factory_bot_rails', '~> 6.1'
-  gem 'cucumber-rails', :require => false
+  gem 'shoulda-matchers'
 end
 
 group :development do
@@ -51,8 +51,8 @@ group :test do
   gem 'capybara', '>= 2.15'
   gem 'selenium-webdriver'
   # Easy installation and use of web drivers to run system tests with browsers
-  gem 'webdrivers'
   gem 'database_cleaner', '~> 1.5', '>= 1.5.3'
+  gem 'webdrivers'
   gem 'webrat-rspec-rails', '~> 0.1.1'
 end
 
@@ -72,7 +72,5 @@ gem 'jquery-fileupload-rails'
 
 gem 'kaminari', '~> 0.16.3'
 
-gem "jquery-validation-rails"
+gem 'jquery-validation-rails'
 gem 'rspec-rails', '~> 4.0.0.beta3'
-
-

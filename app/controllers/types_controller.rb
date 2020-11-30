@@ -10,7 +10,6 @@ class TypesController < ApplicationController
              else
                Type.where(user_id: current_user).page(params[:page]).per(5)
              end
-
   end
 
   def show
@@ -87,6 +86,4 @@ class TypesController < ApplicationController
   def type_params
     params.require(:type).permit(:name, :image, :user_id, :show_all, :page)
   end
-
-
 end

@@ -6,7 +6,6 @@ module ActiveRecord
         reset_transaction
       end
 
-      # Converts an arel AST to SQL
       def to_sql(arel_or_sql_string, binds = [])
         sql, = to_sql_and_binds(arel_or_sql_string, binds)
         sql
@@ -308,13 +307,13 @@ module ActiveRecord
       #
       # The mysql2 and postgresql adapters support setting the transaction
       # isolation level.
-      def transaction(requires_new: nil, isolation: nil, joinable: true)
+      def transaction(requires_new: nil, isolation: nil, joinable: true, &block)
         if !requires_new && current_transaction.joinable?
           raise ActiveRecord::TransactionIsolationError, 'cannot set isolation when joining a transaction' if isolation
 
           yield
         else
-          transaction_manager.within_new_transaction(isolation: isolation, joinable: joinable) { yield }
+          transaction_manager.within_new_transaction(isolation: isolation, joinable: joinable, &block)
         end
       rescue ActiveRecord::Rollback
         # rollbacks are silently swallowed
@@ -546,7 +545,7 @@ module ActiveRecord
 
       def single_value_from_rows(rows)
         row = rows.first
-        row && row.first
+        row&.first
       end
 
       def arel_from_relation(relation)

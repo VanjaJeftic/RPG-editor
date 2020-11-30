@@ -1,18 +1,15 @@
 require 'rails_helper'
 
 RSpec.describe Type, type: :model do
-
   before(:each) do
     @user = User.create(email: 'test@gmail.com',
                         username: 'test',
                         password: 'test11')
 
     @type = Type.create(name: 'Test', user_id: @user.id)
-    @type.image.attach(io: File.open("#{Rails.root}/app/assets/images/hunter.jpeg"), filename: "hunter.jpeg")
-    @type.save()
+    @type.image.attach(io: File.open("#{Rails.root}/app/assets/images/hunter.jpeg"), filename: 'hunter.jpeg')
+    @type.save
   end
-
-
 
   it 'is valid' do
     expect(@type).to be_valid
@@ -26,17 +23,16 @@ RSpec.describe Type, type: :model do
     should have_db_column(:user_id).of_type(:integer)
   end
 
-  it "is attached" do
+  it 'is attached' do
     @type.image.attach(
-        io: File.open(("#{Rails.root}/app/assets/images/hunter.jpeg"), filename: "hunter.jpeg"),
-        filename: 'hunter.jpeg'
+      io: File.open("#{Rails.root}/app/assets/images/hunter.jpeg", filename: 'hunter.jpeg'),
+      filename: 'hunter.jpeg'
     )
     expect(@type.image).to be_attached
   end
 
-  it "is not valid without a name" do
+  it 'is not valid without a name' do
     @type.name = nil
     expect(@type).to_not be_valid
   end
-
 end
