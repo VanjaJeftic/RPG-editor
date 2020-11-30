@@ -26,16 +26,13 @@ $('#submit-button').click(function(){
     }else{
         $('#message-name').hide();
     }
-    if($('#type_image').val()==''){
-        var $messageDiv = $('#message-icon');
-        $messageDiv.show().html('Image can not be left blank!');
-    }else{
-        $('#message-icon').hide();
-    }
-    if($('#name-field').val() != '' && $('#type_image').val() != ''){
+    if($('#name-field').val() != '' ){
         $('#myModal').modal('hide');
 
     }
 });
+
+
+
 
 
