@@ -31,6 +31,9 @@ gem 'bootsnap', '>= 1.4.2', require: false
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
+  %w[rspec-core rspec-expectations rspec-mocks rspec-rails rspec-support].each do |lib|
+    gem lib, git: "https://github.com/rspec/#{lib}.git", branch: 'master'
+  end
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'cucumber-rails', require: false
   gem 'factory_bot_rails', '~> 6.1'
@@ -53,8 +56,6 @@ group :test do
   # Easy installation and use of web drivers to run system tests with browsers
   gem 'database_cleaner', '~> 1.5', '>= 1.5.3'
   gem 'webdrivers'
-  gem 'webrat-rspec-rails', '~> 0.1.1'
-  gem 'minitest', '5.14.2'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
@@ -74,5 +75,5 @@ gem 'jquery-fileupload-rails'
 gem 'kaminari', '~> 0.16.3'
 
 gem 'jquery-validation-rails'
-gem 'rspec-rails', '~> 4.0.0.beta3'
+
 
