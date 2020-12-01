@@ -54,6 +54,7 @@ group :test do
   gem 'database_cleaner', '~> 1.5', '>= 1.5.3'
   gem 'webdrivers'
   gem 'webrat-rspec-rails', '~> 0.1.1'
+  gem 'minitest', '5.14.2'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
@@ -74,3 +75,4 @@ gem 'kaminari', '~> 0.16.3'
 
 gem 'jquery-validation-rails'
 gem 'rspec-rails', '~> 4.0.0.beta3'
+
