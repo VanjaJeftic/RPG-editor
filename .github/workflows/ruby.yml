@@ -44,5 +44,4 @@ jobs:
           PGUSER: postgres
           RAILS_ENV: test
         run: bundle exec rspec
-      - name: Run cucumber
-        run: cucumber features
+     
