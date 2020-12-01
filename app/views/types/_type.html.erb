@@ -3,6 +3,6 @@
   <td><%= image_tag(type.image, style: "width: 5%") if type.image.attached?%></td>
   <td><%= link_to 'Show',  type_path(type), {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#modal-window-show'}%></td>
   <td><%= link_to 'Edit', edit_type_path(type), {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#modal-window-edit'}  %></td>
-  <td><%= link_to 'Destroy', type, method: :delete, data: {remote: true }, class: "delete" %></td>
+  <td><%= link_to 'Destroy', type, method: :delete, data: {confirm: 'Are you sure?', remote: true }, class: "delete" %></td>
   <td><%= link_to 'List of Attributes', attributes_path(:type_id => type.id), {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#modal-window-all-attributes'} %></td>
 </tr>

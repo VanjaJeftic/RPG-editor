@@ -32,4 +32,11 @@ Feature: Type management
       And I click on button Update Type
       Then I should see in table updated name
 
+  @javascript
+  Scenario: See list of types I created
+    Given I visit the index page
+    When I click on link Create Type and fill the form
+    Then I should see a new type
+    When I click on Destroy link
+    Then I should not see created Type
 

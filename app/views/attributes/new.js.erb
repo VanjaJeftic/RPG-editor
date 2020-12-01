@@ -34,13 +34,7 @@ $('#submit-button').click(function(){
     }else{
         $('#message-numerical').hide();
     }
-    if($('#attribute_icon').val()==''){
-        var $messageDiv = $('#message-icon'); // get the reference of the div
-        $messageDiv.show().html('Icon can not be left blank!');
-    }else{
-        $('#message-icon').hide();
-    }
-    if($('#attribute_name').val() != '' && $('#attribute_numerical').val() != '' && $('#attribute_icon').val() !=''){
+    if($('#attribute_name').val() != '' && $('#attribute_numerical').val() != ''){
         $('#modal-window-new-attribute').modal('hide');
     }
 });

@@ -3,5 +3,4 @@ class Attribute < ApplicationRecord
   has_one_attached :icon
   validates :name, presence: true
   validates :numerical, presence: true, numericality: { only_integer: true }
-  validates :icon, presence: true
 end

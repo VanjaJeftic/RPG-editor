@@ -42,3 +42,11 @@ end
 Then('I should see in table updated name') do
   expect(page).to have_content('TestEdit')
 end
+
+When('I click on Destroy link') do
+  click_link('Destroy')
+end
+
+Then('I should not see created Type') do
+  expect(page).to have_no_content('Type2Example')
+end

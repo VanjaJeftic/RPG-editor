@@ -17,7 +17,10 @@ class AttributesControllerTest < ActionDispatch::IntegrationTest
 
   test 'should create attribute' do
     assert_difference('Attribute.count') do
-      post attributes_url, params: { attribute: { name: @attribute.name, numerical: @attribute.numerical, type_id: @attribute.type_id, value: @attribute.value } }
+      post attributes_url, params: { attribute: { name: @attribute.name,
+                                                  numerical: @attribute.numerical,
+                                                  type_id: @attribute.type_id,
+                                                  value: @attribute.value } }
     end
 
     assert_redirected_to attribute_url(Attribute.last)
@@ -34,7 +37,10 @@ class AttributesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'should update attribute' do
-    patch attribute_url(@attribute), params: { attribute: { name: @attribute.name, numerical: @attribute.numerical, type_id: @attribute.type_id, value: @attribute.value } }
+    patch attribute_url(@attribute), params: { attribute: { name: @attribute.name,
+                                                            numerical: @attribute.numerical,
+                                                            type_id: @attribute.type_id,
+                                                            value: @attribute.value } }
     assert_redirected_to attribute_url(@attribute)
   end
 
