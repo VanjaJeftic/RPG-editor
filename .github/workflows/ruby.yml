@@ -31,8 +31,6 @@ jobs:
           gem install bundler
           bundle install --jobs 4 --retry 3
           bin/rails db:setup
-          bin/rails db:migrate
-          bin/rails db:seed
       - name: Run Tests
         env:
           PGHOST: localhost
