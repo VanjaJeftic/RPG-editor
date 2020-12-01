@@ -43,8 +43,8 @@ RSpec.configure do |config|
   # instead of true.
   config.use_transactional_fixtures = true
 
-  #config.include Devise::Test::ControllerHelpers, type: :controller
-  #config.include FactoryBot::Syntax::Methods
+  config.include Devise::Test::ControllerHelpers, type: :controller
+  config.include FactoryBot::Syntax::Methods
   #config.extend ControllerMacros, type: :controller
   # RSpec Rails can automatically mix in different behaviours to your tests
   # based on their file location, for example enabling you to call `get` and
@@ -60,8 +60,6 @@ RSpec.configure do |config|
   # The different available types are documented in the features, such as in
   # https://relishapp.com/rspec/rspec-rails/docs
   config.infer_spec_type_from_file_location!
-
-  config.include Devise::Test::ControllerHelpers, type: :controller
 
   # Filter lines from Rails gems in backtraces.
   config.filter_rails_from_backtrace!

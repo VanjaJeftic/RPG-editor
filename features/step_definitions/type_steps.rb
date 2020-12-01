@@ -50,3 +50,7 @@ end
 Then('I should not see created Type') do
   expect(page).to have_no_content('Type2Example')
 end
+
+And('I confirm popup') do
+  page.driver.browser.switch_to.alert.accept
+end

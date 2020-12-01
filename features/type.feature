@@ -38,5 +38,6 @@ Feature: Type management
     When I click on link Create Type and fill the form
     Then I should see a new type
     When I click on Destroy link
+    And I confirm popup
     Then I should not see created Type
 
