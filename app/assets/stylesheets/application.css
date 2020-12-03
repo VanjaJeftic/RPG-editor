@@ -326,9 +326,9 @@ tr:nth-child(even) {
 }
 
 .sign-out-type-button{
-    color: white;
+    color: black !important;
     padding: 20px 40px;
-    background-color: lightgoldenrodyellow;
+    background-color: indianred;
     border: 1px solid white;
     border-radius: 50%;
     font-weight: 700;
@@ -338,8 +338,99 @@ tr:nth-child(even) {
 }
 
 .sign-out-type-button:hover {
-    background-color: white;
+    color: black;
+    background-color: lightcoral;
     border: 1px solid yellow;
+}
+
+.see-all-type-button{
+    color: black !important;
+    padding: 20px 40px;
+    background-color: darkseagreen;
+    border: 1px solid white;
+    border-radius: 50%;
+    font-weight: 700;
+    font-size: 20px;
+    transition: 0.5s;
+    width: 170px;
+}
+
+.see-all-type-button:hover {
+    background-color: mediumseagreen;
+    border: 1px solid darkseagreen;
+    color: gray;
+}
+
+.sign-in-type-button{
+    color: black !important;
+    padding: 20px 40px;
+    background-color: darkseagreen;
+    border: 1px solid white;
+    border-radius: 50%;
+    font-weight: 700;
+    font-size: 20px;
+    transition: 0.5s;
+    width: 170px;
+}
+
+.sign-in-type-button:hover {
+    background-color: mediumseagreen;
+    border: 1px solid darkseagreen;
+    color: gray;
+}
+
+.sign-up-type-button{
+    color: black !important;
+    padding: 20px 40px;
+    background-color: orange;
+    border: 1px solid white;
+    border-radius: 50%;
+    font-weight: 700;
+    font-size: 20px;
+    transition: 0.5s;
+    width: 170px;
+}
+
+.sign-up-type-button:hover {
+    background-color: lightsalmon;
+    border: 1px solid darkseagreen;
+    color: gray;
+}
+
+.go-back-button{
+    color: black !important;
+    padding: 20px 40px;
+    background-color: lightgreen;
+    border: 1px solid white;
+    border-radius: 50%;
+    font-weight: 700;
+    font-size: 20px;
+    transition: 0.5s;
+    width: 170px;
+}
+
+.go-back-button:hover {
+    background-color: lightgoldenrodyellow;
+    border: 1px solid darkseagreen;
+    color: gray;
+}
+
+.update-info-user-button{
+    color: black !important;
+    padding: 20px 40px;
+    background-color: cornflowerblue;
+    border: 1px solid white;
+    border-radius: 50%;
+    font-weight: 700;
+    font-size: 20px;
+    transition: 0.5s;
+    width: 170px;
+}
+
+.update-info-user-button:hover {
+    background-color: lightskyblue;
+    border: 1px solid darkseagreen;
+    color: gray;
 }
 
 .bottom-margin{
@@ -392,4 +483,13 @@ tr:nth-child(even) {
     background-color: #B00100;
 }
 
+.hero-image {
+    background-image: url("background.jpeg");
+    background-color: #cccccc;
+    height: 500px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+}
 

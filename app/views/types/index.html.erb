@@ -8,16 +8,15 @@
 <div class="header">
   <div class="screen-page">
     <h1>RPG game editor</h1>
-      <h2>Welcome <%= current_user.username %>!</h2>
-      <div class="button-right">
-        <%= link_to "Sign Out", destroy_user_session_path, method: :delete, class: "sign-out-type-button" %>
+      </br>
+      <div>
+        <%= link_to "Go Back", root_path, class: "go-back-button" %>
       </div>
   </div>
 </div>
 
 <div class="content">
   <section class="content">
-    <p id="notice"><%= notice %></p>
     <p>
     <div class="inner highlight-red", id="error-message"></div>
     </p>

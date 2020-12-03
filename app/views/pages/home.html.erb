@@ -1,28 +1,45 @@
-<div class="header">
-  <div class="screen-page">
-    <h1>Welcome to RPG Game Editor!</h1>
-    <% if current_user %>
-      <h2><%= current_user.username %></h2>
-      <div class="button-right">
-        <%= link_to "Sign Out", destroy_user_session_path, method: :delete %>
-      </div>
-    <% else %>
-      <h2>Please sign in or sign up: </h2>
-      <div class="button-right">
-        <%= link_to "Sign Up", new_user_registration_path%></br></br>
-        <%= link_to "Sign In", new_user_session_path %>
-      </div>
-    <% end %>
+<% if !current_user %>
+  <div class="header">
+    <div class="screen-page">
+        <h1>Welcome to RPG Game Editor!</h1>
+        <h2>Please sign in or sign up: </h2>
+        <div class="button-right">
+          <%= link_to "Sign Up", new_user_registration_path, class: "sign-in-type-button" %></br></br>
+        </div>
+        <div class="button-right">
+          <%= link_to "Sign In", new_user_session_path, class: "sign-up-type-button" %>
+        </div>
+    </div>
   </div>
-</div>
+<% else %>
+  <div class="header">
+    <div class="screen-page">
+        <div class="button-right">
+          <%= link_to "Sign Out", destroy_user_session_path, method: :delete, class: "sign-out-type-button" %>
+        </div>
+        <h1>Welcome to RPG Game Editor!</h1>
+        <h2><%= current_user.username %>!</h2>
+        <div class="button-right">
+          <%= link_to "List of Created Types", types_path, class: "see-all-type-button" %>
+        </div>
+    </div>
+  </div>
+    </br>
+  </div>
+  <div class="hero-image">
+    <p id="notice"><%= notice %></p>
+  </br> </br> </br>
+    <div>
+      <%= link_to "Update Your Information", edit_user_registration_path, class: "update-info-user-button" %>
+    </div>
+  </div>
 
-<div class="content">
-  <section class="content">
-  <% if current_user %>
-      <%= render template: "types/index.html.erb" %>
-      </section>
-  <% end %>
-</div>
+
+
+
+<% end %>
+
+
 
 
 

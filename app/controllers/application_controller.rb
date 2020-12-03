@@ -10,6 +10,6 @@ class ApplicationController < ActionController::Base
   end
 
   def after_sign_in_path_for(_resource)
-    types_path(current_user) # your path
+    root_path(current_user)
   end
 end
