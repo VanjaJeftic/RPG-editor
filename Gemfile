@@ -74,4 +74,6 @@ gem 'kaminari', '~> 0.16.3'
 
 gem 'jquery-validation-rails'
 
+gem 'cancancan'
+
 

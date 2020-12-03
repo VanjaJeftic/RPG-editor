@@ -236,8 +236,9 @@ tr:nth-child(even) {
 }
 
 .highlight-red{
-    background-color: greenyellow;
-    color: #B00100;
+    font-size: 24px;
+    color: red;
+    padding: 30px
 }
 
 .center {

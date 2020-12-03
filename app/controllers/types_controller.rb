@@ -1,4 +1,5 @@
 class TypesController < ApplicationController
+  load_and_authorize_resource
   before_action :set_type, only: [:show, :edit, :update, :destroy]
 
   def index
@@ -13,6 +14,7 @@ class TypesController < ApplicationController
   end
 
   def show
+    @type = Type.find(params[:id])
     respond_to do |format|
       format.js
     end
@@ -55,26 +57,12 @@ class TypesController < ApplicationController
   end
 
   def destroy
-    @user_id = @type.user_id
-
-    if current_user.id == @user_id
-      @type.destroy
-
+    @type.destroy
       respond_to do |format|
         format.js
         format.html { redirect_to type_path, notice: 'Type was successfully destroyed.' }
         format.json { head :no_content }
       end
-    else
-      respond_to do |format|
-        format.js do
-          render  template: 'types/destroy_failed.js.erb',
-                  layout: false
-        end
-
-        format.json { head :no_content }
-      end
-    end
   end
 
   private

@@ -4,7 +4,6 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
 
-
 <div class="header">
   <div class="screen-page">
     <h1>RPG game editor</h1>
@@ -17,9 +16,6 @@
 
 <div class="content">
   <section class="content">
-    <p>
-    <div class="inner highlight-red", id="error-message"></div>
-    </p>
     <div class="container">
       <div class="page-header">
       <span >
@@ -27,6 +23,9 @@
         <%= link_to 'Show types you created', types_path(:show_all => false), class: "all-type-button"%>
     </span>
         <br>
+        <div class="inner highlight-red">
+          <div id="error-message-cancan"><%= alert %></div>
+        </div>
         <br>
         <h1>Character Types</h1>
       </div>
@@ -54,6 +53,10 @@
     <br>
     <%= link_to 'Create New Type', new_type_path, {:remote => true, 'data-toggle'=> "modal", 'data-target'=> "#myModal", 'class'=> "new-type-button" } %>
     <%= render 'modals' %>
+
+    <script>
+        setTimeout("$('#error-message-cancan').fadeOut('slow')", 5000)
+    </script>
 
 </section>
 
