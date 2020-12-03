@@ -20,14 +20,14 @@ type5 = Type.create(name: 'Forge Of Empires', user_id: 1)
 type5.image.attach(io: File.open("#{Rails.root}/app/assets/images/empires.jpeg"), filename: "empires.jpeg")
 type5.save()
 
-attribute1 = Attribute.create(name: 'speed', numerical: 30, type_id: 1)
+attribute1 = Attribute.create(name: 'speed', numerical: 30, type_id: 1, user_id: 1)
 attribute1.icon.attach(io: File.open("#{Rails.root}/app/assets/images/speed.png"), filename: "speed.png")
 attribute1.save()
 
-attribute2 = Attribute.create(name: 'strength', numerical: 70, type_id: 1)
+attribute2 = Attribute.create(name: 'strength', numerical: 70, type_id: 1, user_id: 1)
 attribute2.icon.attach(io: File.open("#{Rails.root}/app/assets/images/strength.jpeg"), filename: "strength.jpeg")
 attribute2.save()
 
-attribute3 = Attribute.create(name: 'invisible', numerical: 90, type_id: 2)
+attribute3 = Attribute.create(name: 'invisible', numerical: 90, type_id: 2, user_id: 1)
 attribute3.icon.attach(io: File.open("#{Rails.root}/app/assets/images/invisible.png"), filename: "invisible.png")
 attribute3.save()

@@ -27,6 +27,10 @@
   <%=paginate @attributes, remote: true %>
 </div>
 
+<div class="inner highlight-red" id="message-error-div"></div>
+<div class="inner highlight-red" id="message-error-div-delete"></div>
+<div class="inner highlight-red" id="message-error-div-update"></div>
+
 <%= link_to 'New Attribute', new_attribute_path(:type_id => @attribute_type_id), {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#modal-window-new-attribute', 'class'=> "new-attribute-button"} %>
 
 <%= render 'modals' %>
@@ -36,7 +40,6 @@
     <div class="modal-content"></div>
   </div>
 </div>
-
 
 <div class="modal-footer">
   <button type="button" class="btn btn-secondary" id="close-button-index">Close</button>

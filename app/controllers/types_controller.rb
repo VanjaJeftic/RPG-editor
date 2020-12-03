@@ -14,7 +14,6 @@ class TypesController < ApplicationController
   end
 
   def show
-    @type = Type.find(params[:id])
     respond_to do |format|
       format.js
     end
