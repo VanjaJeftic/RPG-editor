@@ -271,7 +271,7 @@ tr:nth-child(even) {
 }
 
 .new-type-button{
-    color: white;
+    color: black !important;
     padding: 20px 40px;
     background-color: darkseagreen;
     border: 1px solid white;
@@ -285,12 +285,12 @@ tr:nth-child(even) {
 .new-type-button:hover {
     background-color: white;
     border: 1px solid green;
-    color: green;
+    color: gray;
 }
 
 .new-attribute-button{
     text-align: center;
-    color: white;
+    color: black !important;
     padding: 20px 40px;
     background-color: coral;
     border: 1px solid white;
@@ -309,7 +309,7 @@ tr:nth-child(even) {
 
 
 .all-type-button{
-    color: white;
+    color: black !important;
     padding: 20px 40px;
     background-color: lightsalmon;
     border: 1px solid white;
@@ -323,7 +323,7 @@ tr:nth-child(even) {
 .all-type-button:hover {
     background-color: white;
     border: 1px solid orange;
-    color: lightsalmon;
+    color: gray;
 }
 
 .sign-out-type-button{

@@ -22,11 +22,9 @@
     <%= link_to 'Show all created types', types_path(:show_all => true), class: "all-type-button"%>
         <%= link_to 'Show types you created', types_path(:show_all => false), class: "all-type-button"%>
     </span>
-        <br>
-        <div class="inner highlight-red">
-          <div id="error-message-cancan"><%= alert %></div>
-        </div>
-        <br>
+        </br>
+        <div class="inner highlight-red" id="message-error-div-delete"></div>
+        <div class="inner highlight-red" id="message-error-div-update"></div>
         <h1>Character Types</h1>
       </div>
     </div>

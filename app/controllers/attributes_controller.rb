@@ -22,62 +22,28 @@ class AttributesController < ApplicationController
   def new
     @attribute = Attribute.new
     attribute = Type.find(params[:type_id])
-
-    @attribute_type_id = attribute.id
-    respond_to do |format|
-      format.js
+    if attribute.user_id == current_user.id
+      @attribute_type_id = attribute.id
+      respond_to do |format|
+        format.js
+      end
+    else
+      respond_to do |format|
+        format.js do
+          render  template: 'attributes/create_failed.js.erb',
+                  layout: false
+        end
+        format.json { head :no_content }
+      end
     end
   end
 
   def edit
     attribute = Type.find(params[:type_id])
-    @attribute_type_id = attribute.id
-    respond_to do |format|
-      format.js
-    end
-  end
-
-  def create
-    type = Type.find(attribute_params[:type_id])
-    attribute_params[:type_id] = params[:type_id]
-    if type.user_id == current_user.id
-      @attribute = Attribute.new(attribute_params)
-      @attribute.user_id = type.user_id
+    if attribute.user_id == current_user.id
+      @attribute_type_id = attribute.id
       respond_to do |format|
-        if @attribute.save
-          puts "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
-          format.js
-          format.html { redirect_to @attribute, notice: 'Attribute was successfully created.' }
-          format.json { render :show, status: :created, location: @attribute }
-        else
-          format.html { render :new }
-          format.json { render json: @attribute.errors, status: :unprocessable_entity }
-        end
-      end
-      else
-        respond_to do |format|
-          format.js do
-            render  template: 'attributes/create_failed.js.erb',
-                    layout: false
-          end
-
-          format.json { head :no_content }
-        end
-    end
-  end
-
-  def update
-    type = Type.find(@attribute.type_id)
-    if type.user_id == current_user.id
-      respond_to do |format|
-        if @attribute.update(attribute_params)
-          format.js
-          format.html { redirect_to @attribute, notice: 'Attribute was successfully updated.' }
-          format.json { render :show, status: :ok, location: @attribute }
-        else
-          format.html { render :edit }
-          format.json { render json: @attribute.errors, status: :unprocessable_entity }
-        end
+        format.js
       end
     else
       respond_to do |format|
@@ -85,11 +51,39 @@ class AttributesController < ApplicationController
           render  template: 'attributes/update_failed.js.erb',
                   layout: false
         end
-
         format.json { head :no_content }
       end
     end
+  end
 
+  def create
+    type = Type.find(attribute_params[:type_id])
+    attribute_params[:type_id] = params[:type_id]
+    @attribute = Attribute.new(attribute_params)
+    @attribute.user_id = type.user_id
+    respond_to do |format|
+      if @attribute.save
+        format.js
+        format.html { redirect_to @attribute, notice: 'Attribute was successfully created.' }
+        format.json { render :show, status: :created, location: @attribute }
+      else
+        format.html { render :new }
+        format.json { render json: @attribute.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  def update
+    respond_to do |format|
+      if @attribute.update(attribute_params)
+        format.js
+        format.html { redirect_to @attribute, notice: 'Attribute was successfully updated.' }
+        format.json { render :show, status: :ok, location: @attribute }
+      else
+        format.html { render :edit }
+        format.json { render json: @attribute.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
   def destroy
@@ -107,13 +101,9 @@ class AttributesController < ApplicationController
           render  template: 'attributes/delete_failed.js.erb',
                   layout: false
         end
-
         format.json { head :no_content }
       end
     end
-
-
-
   end
 
   private

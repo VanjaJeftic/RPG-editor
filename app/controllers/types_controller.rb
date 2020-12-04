@@ -25,6 +25,16 @@ class TypesController < ApplicationController
   end
 
   def edit
+    type = Type.find(params[:id])
+    if type.user_id != current_user.id
+      respond_to do |format|
+        format.js do
+          render  template: 'types/update_failed.js.erb',
+                  layout: false
+        end
+        format.json { head :no_content }
+      end
+    end
   end
 
   def create
@@ -56,12 +66,23 @@ class TypesController < ApplicationController
   end
 
   def destroy
-    @type.destroy
+    if @type.user_id == current_user.id
+      @type.destroy
+        respond_to do |format|
+          format.js
+          format.html { redirect_to type_path, notice: 'Type was successfully destroyed.' }
+          format.json { head :no_content }
+        end
+    else
+      puts "dddddddddddddddddddddddddddddddddddddddd"
       respond_to do |format|
-        format.js
-        format.html { redirect_to type_path, notice: 'Type was successfully destroyed.' }
+        format.js do
+          render  template: 'types/delete_failed.js.erb',
+                  layout: false
+        end
         format.json { head :no_content }
       end
+    end
   end
 
   private

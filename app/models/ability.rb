@@ -7,6 +7,7 @@ class Ability
     can :read, :all
     can :edit, :all
     can :index, :all
+    can :destroy, :all
 
     if user.present?
       can :manage, Type, user_id: user.id
