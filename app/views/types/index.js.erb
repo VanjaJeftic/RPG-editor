@@ -1,0 +1,6 @@
+$("#types-render").html("<%= j render(@types) %>");
+$("#paginator").html("<%= j(paginate(@types, :remote => true))%>");
+
+
+
+

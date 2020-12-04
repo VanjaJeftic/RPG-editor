@@ -5,7 +5,9 @@
 <div class="modal-body">
   <p id="notice"><%= notice %></p>
 
-  <%=paginate @attributes, remote: true %>
+  <div id="paginator">
+    <%=paginate @attributes,  :remote => true %>
+  </div>
 
   <table id="attributes_table">
     <thead>
@@ -17,14 +19,11 @@
     </tr>
     </thead>
 
-    <tbody>
-    <% @attributes.each do |attribute| %>
-      <%= render attribute %>
-    <% end %>
+    <tbody id="attributes-render">
+    <%= render @attributes %>
     </tbody>
   </table>
 
-  <%=paginate @attributes, remote: true %>
 </div>
 
 <div class="inner highlight-red" id="message-error-div"></div>

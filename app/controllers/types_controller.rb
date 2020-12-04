@@ -11,6 +11,10 @@ class TypesController < ApplicationController
              else
                Type.where(user_id: current_user).page(params[:page]).per(5)
              end
+    respond_to do |format|
+      format.js
+      format.html
+    end
   end
 
   def show
