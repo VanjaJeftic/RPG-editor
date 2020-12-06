@@ -76,3 +76,4 @@ gem 'jquery-validation-rails'
 gem 'cancancan'
 
 
+
