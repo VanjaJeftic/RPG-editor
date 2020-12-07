@@ -494,3 +494,179 @@ tr:nth-child(even) {
     position: relative;
 }
 
+.edit-button-type{
+    background-color: yellow;
+    border: darkslategrey;
+    border-radius: 50%;
+    font-weight: bold;
+}
+
+.edit-button-type a{
+    background-color: yellow;
+    color: black;
+    border-radius: 50%;
+}
+
+.edit-button-type:hover {
+    background-color: lightgoldenrodyellow;
+    border: 1px solid yellow;
+    color: black !important;
+    font-weight: bold;
+}
+
+.edit-button-attribute{
+    background-color: yellow;
+    border: darkslategrey;
+    border-radius: 50%;
+    font-weight: bold;
+}
+
+.edit-button-attribute a{
+    background-color: yellow;
+    color: black;
+    border-radius: 50%;
+}
+
+.edit-button-attribute:hover {
+    background-color: lightgoldenrodyellow;
+    border: 1px solid yellow;
+    color: black !important;
+    font-weight: bold;
+}
+
+.destroy-button-type{
+    background-color: red;
+    border: #730E15;
+    border-radius: 50%;
+    font-weight: bold;
+}
+
+.destroy-button-type a{
+    background-color: red;
+    color: black;
+    border-radius: 50%;
+}
+
+.destroy-button-type:hover {
+    background-color: indianred;
+    border: 1px solid red;
+    color: black !important;
+    font-weight: bold;
+}
+
+.destroy-button-attribute{
+    background-color: red;
+    border: #730E15;
+    border-radius: 50%;
+    font-weight: bold;
+}
+
+.destroy-button-attribute a{
+    background-color: red;
+    color: black;
+    border-radius: 50%;
+}
+
+.destroy-button-attribute:hover {
+    background-color: indianred;
+    border: 1px solid red;
+    color: black !important;
+    font-weight: bold;
+}
+
+
+.attributes-button-type{
+    background-color: orange;
+    border: darkorange;
+    border-radius: 50%;
+    font-weight: bold;
+}
+
+.attributes-button-type:hover {
+    background-color: lightsalmon;
+    border: 1px solid orange;
+    color: black !important;
+    font-weight: bold;
+}
+
+.attributes-button-type a{
+    background-color: orange;
+    color: black;
+    border-radius: 50%;
+}
+
+.show-button-type{
+    background-color: lightskyblue;
+    border: dodgerblue;
+    border-radius: 50%;
+    font-weight: bold;
+}
+
+.show-button-type:hover {
+    background-color: lightblue;
+    border: 1px solid dodgerblue;
+    color: black !important;
+    font-weight: bold;
+}
+
+.show-button-type a{
+    background-color: lightskyblue;
+    color: black;
+    border-radius: 50%;
+}
+
+.show-button-attribute{
+    background-color: lightskyblue;
+    border: dodgerblue;
+    border-radius: 50%;
+    font-weight: bold;
+}
+
+.show-button-attribute:hover {
+    background-color: lightblue;
+    border: 1px solid dodgerblue;
+    color: black !important;
+    font-weight: bold;
+}
+
+.show-button-attribute a{
+    background-color: lightskyblue;
+    color: black;
+    border-radius: 50%;
+}
+
+.types_table table {
+    border: 1px solid black;
+    table-layout: fixed;
+    width: 100%;
+}
+
+.types_table th, td {
+    border: 1px solid black;
+    width: 150px;
+    overflow: hidden;
+}
+
+td:nth-child(2){
+    width: 340px !important;
+}
+
+td:nth-child(1){
+    width: 340px !important;
+}
+
+.attributes_table table{
+    border: 1px solid black;
+    table-layout: fixed;
+    width: 100%;
+}
+
+.attributes_table th, td {
+    border: 1px solid black;
+    width: 100px;
+    overflow: hidden;
+}
+
+.highlight-attribute{
+    background-color: yellow !important;
+}

@@ -2,3 +2,8 @@ $('.delete').bind('ajax:success', function(){
    $(this).closest('tr').fadeOut();
 });
 
+var url = window.location.href;     // Returns full URL (https://example.com/path/example.html)
+
+if(url == 'http://localhost:3000/types' || url == 'http://localhost:3000/types?show_all=false' ){
+    $.ajax({url: "/types", type: "GET"})
+}

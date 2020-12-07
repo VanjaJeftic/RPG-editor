@@ -1,27 +1,34 @@
 //$('.last a')[0].click();
 
-/*if($(document).text().includes('Last »') === true){
-    let max = 0;
-    $("tr").each(function() {
-        let row_value = this.id;
-        let new_row_value = row_value.slice(5);
-        max = Math.max(new_row_value, max);
-    });
-    let output = "type_" + max;
+//if($( ".last a" ).length !== 0 && $(document).text().includes('Last »') === true){
+//    let max = 0;
+//    $("tr").each(function() {
+//        let row_value = this.id;
+//        let new_row_value = row_value.slice(5);
+//        max = Math.max(new_row_value, max);
+//    });
+//    let output = "type_" + max;
 
-    $( ".last a" )[0].click();
-}*/
-$('#types_table').append('<%= j render partial: "type", locals: {type: @type} %>');
-location.reload();
+//    $( ".last a" )[0].click();
+//}
+$('#types_table').prepend('<%= j render partial: "type", locals: {type: @type} %>');
 
+var rowCount = $('#attributes_table tr').length;
+if (rowCount > 5){
+    $('#types_table tr').last().hide();
+}
 
-$( 'tr' ).last().addClass("highlight");
+var url = window.location.href;     // Returns full URL (https://example.com/path/example.html)
+
+if(url == 'http://localhost:3000/types' || url == 'http://localhost:3000/types?show_all=false' ){
+    $.ajax({url: "/types", type: "GET"})
+}
+
 setTimeout(function() {
-    $( "tr" ).removeClass('highlight');
-}, 4000);
-
-
-
-
+  $('tr').eq(1).addClass("highlight");
+  setTimeout(function() {
+      $( "tr" ).removeClass('highlight');
+  }, 3000);
+}, 100);
 
 

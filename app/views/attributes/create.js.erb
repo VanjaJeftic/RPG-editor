@@ -1,7 +1,13 @@
-$('#attributes_table').append('<%= j render partial: "attribute", locals: {attribute: @attribute} %>');
+$('#attributes_table').prepend('<%= j render partial: "attribute", locals: {attribute: @attribute} %>');
 
-$( "tr" ).last().addClass("highlight");
+var rowCount = $('#attributes_table tr').length;
+if (rowCount > 5){
+    $('#attributes_table tr').last().hide();
+}
+
+$('#attributes-render tr').first().addClass("highlight");
 setTimeout(function() {
-    $( "tr" ).removeClass('highlight');
+    $('#attributes-render tr').first().removeClass('highlight');
 }, 4000);
+
 

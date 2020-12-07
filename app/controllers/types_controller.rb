@@ -4,13 +4,14 @@ class TypesController < ApplicationController
 
   def index
     self.params = params.permit!
+    @types = current_user.types.order("created_at DESC").page(params[:page]).per(4)
 
-    @types = Type.where(user_id: current_user).page(params[:page]).per(5)
     @types = if params[:show_all] == 'true'
-               Type.all.page(params[:page]).per(5)
+               Type.all.order("created_at DESC").page(params[:page]).per(4)
              else
-               Type.where(user_id: current_user).page(params[:page]).per(5)
+               current_user.types.order("created_at DESC").page(params[:page]).per(4)
              end
+
     respond_to do |format|
       format.js
       format.html
@@ -29,16 +30,6 @@ class TypesController < ApplicationController
   end
 
   def edit
-    type = Type.find(params[:id])
-    if type.user_id != current_user.id
-      respond_to do |format|
-        format.js do
-          render  template: 'types/update_failed.js.erb',
-                  layout: false
-        end
-        format.json { head :no_content }
-      end
-    end
   end
 
   def create
@@ -70,22 +61,11 @@ class TypesController < ApplicationController
   end
 
   def destroy
-    if @type.user_id == current_user.id
-      @type.destroy
-        respond_to do |format|
-          format.js
-          format.html { redirect_to type_path, notice: 'Type was successfully destroyed.' }
-          format.json { head :no_content }
-        end
-    else
-      puts "dddddddddddddddddddddddddddddddddddddddd"
+    @type.destroy
       respond_to do |format|
-        format.js do
-          render  template: 'types/delete_failed.js.erb',
-                  layout: false
-        end
+        format.js
+        format.html { redirect_to type_path, notice: 'Type was successfully destroyed.' }
         format.json { head :no_content }
-      end
     end
   end
 

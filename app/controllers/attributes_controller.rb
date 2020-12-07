@@ -6,7 +6,7 @@ class AttributesController < ApplicationController
     type = Type.find(params[:type_id])
     @attribute_type_name = type.name
     @attribute_type_id = type.id
-    @attributes = Attribute.where(type_id: params[:type_id]).page(params[:page]).per(5)
+    @attributes = Attribute.where(type_id: params[:type_id]).order("created_at DESC").page(params[:page]).per(4)
 
     respond_to do |format|
       format.js
@@ -22,37 +22,17 @@ class AttributesController < ApplicationController
   def new
     @attribute = Attribute.new
     attribute = Type.find(params[:type_id])
-    if attribute.user_id == current_user.id
-      @attribute_type_id = attribute.id
-      respond_to do |format|
-        format.js
-      end
-    else
-      respond_to do |format|
-        format.js do
-          render  template: 'attributes/create_failed.js.erb',
-                  layout: false
-        end
-        format.json { head :no_content }
-      end
+    @attribute_type_id = attribute.id
+    respond_to do |format|
+      format.js
     end
   end
 
   def edit
     attribute = Type.find(params[:type_id])
-    if attribute.user_id == current_user.id
-      @attribute_type_id = attribute.id
-      respond_to do |format|
-        format.js
-      end
-    else
-      respond_to do |format|
-        format.js do
-          render  template: 'attributes/update_failed.js.erb',
-                  layout: false
-        end
-        format.json { head :no_content }
-      end
+    @attribute_type_id = attribute.id
+    respond_to do |format|
+      format.js
     end
   end
 
@@ -87,22 +67,11 @@ class AttributesController < ApplicationController
   end
 
   def destroy
-    type = Type.find(@attribute.type_id)
-    if type.user_id == current_user.id
-      @attribute.destroy
-      respond_to do |format|
-        format.js
-        format.html { redirect_to attributes_url, notice: 'Attribute was successfully destroyed.' }
-        format.json { head :no_content }
-      end
-    else
-      respond_to do |format|
-        format.js do
-          render  template: 'attributes/delete_failed.js.erb',
-                  layout: false
-        end
-        format.json { head :no_content }
-      end
+    @attribute.destroy
+    respond_to do |format|
+      format.js
+      format.html { redirect_to attributes_url, notice: 'Attribute was successfully destroyed.' }
+      format.json { head :no_content }
     end
   end
 

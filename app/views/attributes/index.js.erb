@@ -2,7 +2,7 @@ $('#modal-window-all-attributes').find(".modal-content").html("<%= j (render 'in
 $('#modal-window-all-attributes').modal('show');
 
 $("#attributes-render").html("<%= j render(@attributes) %>");
-$("#paginator").html("<%= j(paginate(@attributes, :remote => true))%>");
+$("#paginator-attributes").html("<%= j(paginate(@attributes, :remote => true))%>");
 
 $("#close-button-index").click(function(e){
     $('#modal-window-all-attributes').modal('hide');

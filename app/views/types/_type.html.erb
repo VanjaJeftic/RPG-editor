@@ -1,8 +1,8 @@
 <tr id="<%= dom_id type %>">
   <td><%= type.name %></td>
-  <td><%= image_tag(type.image, style: "width: 5%") if type.image.attached?%></td>
-  <td><%= link_to 'Show',  type_path(type), {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#modal-window-show'}%></td>
-  <td><%= link_to 'Edit', edit_type_path(type), {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#modal-window-edit'}  %></td>
-  <td><%= link_to 'Destroy', type, method: :delete, data: { remote: true }, class: "delete" %></td>
-  <td><%= link_to 'List of Attributes', attributes_path(:type_id => type.id), {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#modal-window-all-attributes'} %></td>
+  <td><%= image_tag(type.image,  style: "width: 50px") if type.image.attached?%></td>
+  <td><button class="show-button-type"><%= link_to 'Show',  type_path(type), {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#modal-window-show'}%></button></td>
+  <td><button class="edit-button-type"><%= link_to 'Edit', edit_type_path(type), {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#modal-window-edit'} %></button></td>
+  <td><button class="destroy-button-type"><%= link_to 'Destroy', type, method: :delete, data: { remote: true }, class: "delete" %></button></td>
+  <td><button class="attributes-button-type"><%= link_to 'List of Attributes', attributes_path(:type_id => type.id), {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#modal-window-all-attributes'} %></button></td>
 </tr>

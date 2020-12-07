@@ -18,13 +18,11 @@
   <section class="content">
     <div class="container">
       <div class="page-header">
-      <span >
-    <%= link_to 'Show all created types', types_path(:show_all => true), class: "all-type-button"%>
+      <span>
+          <%= link_to 'Show all created types', types_path(:show_all => true), class: "all-type-button"%>
         <%= link_to 'Show types you created', types_path(:show_all => false), class: "all-type-button"%>
     </span>
-        </br>
-        <div class="inner highlight-red" id="message-error-div-delete"></div>
-        <div class="inner highlight-red" id="message-error-div-update"></div>
+        </br></br>
         <h1>Character Types</h1>
       </div>
     </div>
@@ -54,15 +52,20 @@
     <br>
     <%= link_to 'Create New Type', new_type_path, {:remote => true, 'data-toggle'=> "modal", 'data-target'=> "#myModal", 'class'=> "new-type-button" } %>
     <%= render 'modals' %>
-
-    <script>
-        setTimeout("$('#error-message-cancan').fadeOut('slow')", 5000)
-    </script>
-
 </section>
 
 </div>
 
+<script>
+
+var pathname = window.location.href; // Returns path only (/path/example.html)
+if (pathname == 'http://localhost:3000/types?show_all=true'){
+    $(".edit-button-type" ).hide();
+    $(".destroy-button-type").hide();
+    $(".attributes-button-type").hide();
+}
+
+</script>
 
 
 

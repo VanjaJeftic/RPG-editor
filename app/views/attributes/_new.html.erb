@@ -28,7 +28,7 @@
           <%= form.text_field :name %>
         </div>
 
-        <div class="red-error-message" id="message-name"></div>
+        <div class="red-error-message" id="message-name-attr"></div>
 
         <div class="field">
           <%= form.label :numerical, 'Numerical value' %>
@@ -41,13 +41,13 @@
           <%= attribute_avatar(attribute) %>
           <%= form.label :icon %>
           <%= form.file_field :icon %>
-          <img id="blah" src="#" />
+          <img id="image-attribute-append" src="#" />
         </div>
 
         <div class="red-error-message" id="message-icon"></div>
 
         <div class="actions style-button-create">
-          <button id="submit-button">
+          <button id="submit-button-attribute">
           <%= form.submit %>
           </button>
         </div>
