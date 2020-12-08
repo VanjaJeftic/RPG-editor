@@ -58,8 +58,10 @@
 
 <script>
 
-var pathname = window.location.href; // Returns path only (/path/example.html)
-if (pathname == 'http://localhost:3000/types?show_all=true'){
+var pathname = window.location.pathname; // Returns path only (/path/example.html)
+var search_from_url = window.location.search
+var sum = pathname + search_from_url
+if (sum == '/types?show_all=true' ){
     $(".edit-button-type" ).hide();
     $(".destroy-button-type").hide();
     $(".attributes-button-type").hide();
