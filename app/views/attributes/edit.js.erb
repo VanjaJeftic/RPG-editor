@@ -20,7 +20,7 @@ $("#close-button-edit-attribute").click(function(e){
     $('#modal-window-edit-attribute').modal('hide');
 });
 
-$('#update-button').click(function(){
+$('#update-button-attribute').click(function(){
     if($('#attribute_name').val() == ''){
         var $messageDiv = $('#message-name'); // get the reference of the div
         $messageDiv.show().html('Name can not be left blank!');
