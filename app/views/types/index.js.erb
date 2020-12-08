@@ -2,7 +2,7 @@ $("#types-render").html("<%= j render(@types) %>");
 $("#paginator").html("<%= j(paginate(@types, :remote => true))%>");
 
 var pathname = window.location.href; // Returns path only (/path/example.html)
-if (pathname == 'http://localhost:3000/types?show_all=true'){
+if (pathname == 'http://localhost:3000/types?show_all=true' || pathname =='https://serene-caverns-52637.herokuapp.com/types?show_all=true'){
     $(".edit-button-type" ).hide();
     $(".destroy-button-type").hide();
     $(".attributes-button-type").hide();
