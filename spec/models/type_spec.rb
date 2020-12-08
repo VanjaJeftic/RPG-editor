@@ -2,17 +2,21 @@ require 'rails_helper'
 
 RSpec.describe Type, type: :model do
   before(:each) do
-    @user = User.create(email: 'test@gmail.com',
-                        username: 'test',
-                        password: 'test11')
-
-    @type = Type.create(name: 'Test', user_id: @user.id)
-    @type.image.attach(io: File.open("#{Rails.root}/app/assets/images/hunter.jpeg"), filename: 'hunter.jpeg')
-    @type.save
+    @user = FactoryBot.create(
+    :user,
+                        email: 'petar@gmail.com',
+                        username: 'petar',
+                        password: 'petar1')
   end
 
+  subject do
+    described_class.new(id: 1, user_id: @user.id, name: 'type1')
+  end
+
+  it {should belong_to(:user)}
+
   it 'is valid' do
-    expect(@type).to be_valid
+    expect(subject).to be_valid
   end
 
   it 'db should have column name' do
@@ -24,15 +28,15 @@ RSpec.describe Type, type: :model do
   end
 
   it 'is attached' do
-    @type.image.attach(
+    subject.image.attach(
       io: File.open("#{Rails.root}/app/assets/images/hunter.jpeg", filename: 'hunter.jpeg'),
       filename: 'hunter.jpeg'
     )
-    expect(@type.image).to be_attached
+    expect(subject.image).to be_attached
   end
 
   it 'is not valid without a name' do
-    @type.name = nil
-    expect(@type).to_not be_valid
+    subject.name = nil
+    expect(subject).to_not be_valid
   end
 end

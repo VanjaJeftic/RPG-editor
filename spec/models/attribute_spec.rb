@@ -2,21 +2,20 @@ require 'rails_helper'
 
 RSpec.describe Attribute, type: :model do
   before(:each) do
-    @user = User.create(email: 'test@gmail.com',
-                        username: 'test',
-                        password: 'test11')
+    @user = FactoryBot.create(:user,
+                              email: 'petar1@gmail.com',
+                        username: 'petar1',
+                        password: 'petar11')
 
-    @type = Type.create(name: 'Type', user_id: @user.id)
-    @type.image.attach(io: File.open("#{Rails.root}/app/assets/images/hunter.jpeg"), filename: 'hunter.jpeg')
-    @type.save
+    @type = FactoryBot.create(:type, name: 'Type', user_id: @user.id)
+  end
 
-    @attribute = Attribute.create(name: 'Attribute', numerical: 100, type_id: @type.id)
-    @attribute.icon.attach(io: File.open("#{Rails.root}/app/assets/images/speed.png"), filename: 'speed.png')
-    @attribute.save
+  subject do
+    described_class.new(id:1, type_id: @type.id, user_id: @user.id, numerical: 1, name: 'attribute1')
   end
 
   it 'is valid' do
-    expect(@attribute).to be_valid
+    expect(subject).to be_valid
   end
 
   it 'db should have column name' do
@@ -32,20 +31,20 @@ RSpec.describe Attribute, type: :model do
   end
 
   it 'is attached' do
-    @attribute.icon.attach(
+    subject.icon.attach(
       io: File.open("#{Rails.root}/app/assets/images/hunter.jpeg", filename: 'hunter.jpeg'),
       filename: 'hunter.jpeg'
     )
-    expect(@attribute.icon).to be_attached
+    expect(subject.icon).to be_attached
   end
 
   it 'is not valid without a name' do
-    @attribute.name = nil
-    expect(@attribute).to_not be_valid
+    subject.name = nil
+    expect(subject).to_not be_valid
   end
 
   it 'is not valid without a numerical' do
-    @attribute.numerical = nil
-    expect(@attribute).to_not be_valid
+    subject.numerical = nil
+    expect(subject).to_not be_valid
   end
 end

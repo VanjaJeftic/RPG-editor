@@ -75,5 +75,4 @@ gem 'jquery-validation-rails'
 
 gem 'cancancan'
 
-
-
+gem 'google-cloud-storage', '~> 1.11'
