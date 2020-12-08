@@ -2,9 +2,10 @@ $('.delete').bind('ajax:success', function(){
    $(this).closest('tr').fadeOut();
 });
 
-var url = window.location.href;     // Returns full URL (https://example.com/path/example.html)
+var pathname = window.location.pathname; // Returns path only (/path/example.html)
+var search_from_url = window.location.search
+var sum = pathname + search_from_url
 
-if(url == 'http://localhost:3000/types' || url == 'http://localhost:3000/types?show_all=false' ||
-url == 'https://serene-caverns-52637.herokuapp.com/types?show_all=false' || url == 'https://serene-caverns-52637.herokuapp.com/types'){
+if(sum == '/types' || sum == '/types?show_all=false'){
     $.ajax({url: "/types", type: "GET"})
 }

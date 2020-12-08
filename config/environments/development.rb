@@ -62,6 +62,4 @@ Rails.application.configure do
 
   config.serve_static_assets = true
 
-  config.action_controller.default_url_options[:protocol] = 'https'
-
 end
