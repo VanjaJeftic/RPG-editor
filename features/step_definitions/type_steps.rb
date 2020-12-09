@@ -1,5 +1,8 @@
-Given('I visit the index page') do
-  visit types_path(@user)
+Given('I click on link List of Created Types') do
+  click_link('List of Created Types')
+end
+
+Then('I should see table with name Character Types') do
   expect(page).to have_content('Character Types')
 end
 
@@ -11,8 +14,17 @@ When('I click on link Create Type and fill the form') do
 end
 
 Then('I should see a new type') do
-  visit types_path(@user)
+  visit types_path
   expect(page).to have_content('Type2Example')
+end
+
+Then('I should click on Show types you created link') do
+  click_link('Show types you created')
+end
+
+Given('I visit the index page') do
+  visit types_path
+  expect(page).to have_content('Character Types')
 end
 
 When('I click on Edit link') do
@@ -21,14 +33,6 @@ end
 
 Then('I should see form with Create new type title') do
   expect(page).to have_content('Create new type')
-end
-
-Given('I am on index page') do
-  visit types_path(@user)
-end
-
-Then('I see created type') do
-  expect(page).to have_content('Type2Example')
 end
 
 When('I change type name') do
@@ -49,8 +53,4 @@ end
 
 Then('I should not see created Type') do
   expect(page).to have_no_content('Type2Example')
-end
-
-And('I confirm popup') do
-  page.driver.browser.switch_to.alert.accept
 end

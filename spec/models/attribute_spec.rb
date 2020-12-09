@@ -4,14 +4,14 @@ RSpec.describe Attribute, type: :model do
   before(:each) do
     @user = FactoryBot.create(:user,
                               email: 'petar1@gmail.com',
-                        username: 'petar1',
-                        password: 'petar11')
+                              username: 'petar1',
+                              password: 'petar11')
 
     @type = FactoryBot.create(:type, name: 'Type', user_id: @user.id)
   end
 
   subject do
-    described_class.new(id:1, type_id: @type.id, user_id: @user.id, numerical: 1, name: 'attribute1')
+    described_class.new(id: 1, type_id: @type.id, user_id: @user.id, numerical: 1, name: 'attribute1')
   end
 
   it 'is valid' do

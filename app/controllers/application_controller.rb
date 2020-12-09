@@ -15,8 +15,7 @@ class ApplicationController < ActionController::Base
   end
 
   rescue_from CanCan::AccessDenied do |exception|
-    exception.default_message = "You can not manage types you did not created!"
-    redirect_to '/types?show_all=true', :alert => exception.message
+    exception.default_message = 'You can not manage types you did not created!'
+    redirect_to '/types?show_all=true', alert: exception.message
   end
-
 end

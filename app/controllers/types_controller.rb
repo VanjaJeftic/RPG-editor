@@ -4,12 +4,12 @@ class TypesController < ApplicationController
 
   def index
     self.params = params.permit!
-    @types = current_user.types.order("created_at DESC").page(params[:page]).per(4)
+    @types = current_user.types.order('created_at DESC').page(params[:page]).per(4)
 
     @types = if params[:show_all] == 'true'
-               Type.all.order("created_at DESC").page(params[:page]).per(4)
+               Type.all.order('created_at DESC').page(params[:page]).per(4)
              else
-               current_user.types.order("created_at DESC").page(params[:page]).per(4)
+               current_user.types.order('created_at DESC').page(params[:page]).per(4)
              end
 
     respond_to do |format|
@@ -62,10 +62,10 @@ class TypesController < ApplicationController
 
   def destroy
     @type.destroy
-      respond_to do |format|
-        format.js
-        format.html { redirect_to type_path, notice: 'Type was successfully destroyed.' }
-        format.json { head :no_content }
+    respond_to do |format|
+      format.js
+      format.html { redirect_to type_path, notice: 'Type was successfully destroyed.' }
+      format.json { head :no_content }
     end
   end
 

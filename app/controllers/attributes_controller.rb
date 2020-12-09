@@ -6,7 +6,7 @@ class AttributesController < ApplicationController
     type = Type.find(params[:type_id])
     @attribute_type_name = type.name
     @attribute_type_id = type.id
-    @attributes = Attribute.where(type_id: params[:type_id]).order("created_at DESC").page(params[:page]).per(4)
+    @attributes = Attribute.where(type_id: params[:type_id]).order('created_at DESC').page(params[:page]).per(4)
 
     respond_to do |format|
       format.js
