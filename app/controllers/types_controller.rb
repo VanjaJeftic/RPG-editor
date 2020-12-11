@@ -3,7 +3,6 @@ class TypesController < ApplicationController
   before_action :set_type, only: [:show, :edit, :update, :destroy]
 
   def index
-    self.params = params.permit!
     @types = current_user.types.order('created_at DESC').page(params[:page]).per(4)
 
     @types = if params[:show_all] == 'true'

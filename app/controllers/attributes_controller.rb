@@ -1,12 +1,11 @@
 class AttributesController < ApplicationController
   before_action :set_attribute, only: [:show, :edit, :update, :destroy]
+  before_action :set_type, only: [:index]
 
   def index
-    self.params = params.permit!
-    type = Type.find(params[:type_id])
-    @attribute_type_name = type.name
-    @attribute_type_id = type.id
-    @attributes = Attribute.where(type_id: params[:type_id]).order('created_at DESC').page(params[:page]).per(4)
+    @attribute_type_name = @type.name
+    @attribute_type_id = @type.id
+    @attributes = @types.attributes.order('created_at DESC').page(params[:page]).per(4)
 
     respond_to do |format|
       format.js
@@ -21,16 +20,14 @@ class AttributesController < ApplicationController
 
   def new
     @attribute = Attribute.new
-    attribute = Type.find(params[:type_id])
-    @attribute_type_id = attribute.id
+    @attribute_type_id = @type.id
     respond_to do |format|
       format.js
     end
   end
 
   def edit
-    attribute = Type.find(params[:type_id])
-    @attribute_type_id = attribute.id
+    @attribute_type_id = @type.id
     respond_to do |format|
       format.js
     end
@@ -79,6 +76,10 @@ class AttributesController < ApplicationController
 
   def set_attribute
     @attribute = Attribute.find(params[:id])
+  end
+
+  def set_type
+    @type = Type.find(params[:type_id])
   end
 
   def attribute_params

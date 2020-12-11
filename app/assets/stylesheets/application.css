@@ -14,17 +14,6 @@
  *= require_self
  */
 
-
-
-/*
- * Copyright (c) 2012 Thibaut Courouble
- * http://www.cssflow.com
- * Licensed under the MIT License
- *
- * Sass/SCSS source: https://goo.gl/0jzXf
- * PSD by Orman Clark: https://goo.gl/D8zmk
- */
-
 body {
     font: 13px/20px "Lucida Grande", Tahoma, Verdana, sans-serif;
     color: #404040;
@@ -306,7 +295,6 @@ tr:nth-child(even) {
     border: 1px solid green;
     color: green;
 }
-
 
 .all-type-button{
     color: black !important;

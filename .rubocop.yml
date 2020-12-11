@@ -29,7 +29,6 @@ AllCops:
     - 'script/**/*'
     - 'bin/{rails,rake}'
     - !ruby/regexp /old_and_unused\.rb$/
-    - "lib/**/*"
     - "activerecord/**/*"
 
 Style/Documentation:
@@ -60,5 +59,6 @@ Metrics/MethodLength:
   Max: 20
 
 Metrics/BlockLength:
+  Max: 190
   Exclude:
     - "spec/**/*"
