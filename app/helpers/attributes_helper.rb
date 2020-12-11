@@ -1,11 +1,9 @@
 module AttributesHelper
   def attribute_avatar(attribute)
-    @icon = attribute.icon
-    if @icon.attached?
-      @icon_attribute = image_tag(@icon)
-      # else
-      # @icon_attribute = image_tag("icon_default.jpeg")
+    icon = attribute.icon
+    if icon.attached?
+      icon_attribute = image_tag(icon)
     end
-    @icon_attribute
+    icon_attribute
   end
 end

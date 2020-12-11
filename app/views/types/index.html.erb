@@ -44,20 +44,14 @@
         <tbody id="types-render">
         <%= render @types %>
         </tbody>
-
       </table>
-
-
     </div>
     <br>
     <%= link_to 'Create New Type', new_type_path, {:remote => true, 'data-toggle'=> "modal", 'data-target'=> "#myModal", 'class'=> "new-type-button" } %>
     <%= render 'modals' %>
-</section>
-
+  </section>
 </div>
-
 <script>
-
 var pathname = window.location.pathname; // Returns path only (/path/example.html)
 var search_from_url = window.location.search
 var sum = pathname + search_from_url
@@ -67,24 +61,4 @@ if (sum == '/types?show_all=true' ){
     $(".attributes-button-type").hide();
     $(".new-type-button").hide();
 }
-
 </script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

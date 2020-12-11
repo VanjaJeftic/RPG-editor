@@ -1,5 +1,5 @@
 <div class="modal-header">
-  <h4 class="modal-title">Create new type</h4>
+  <h4 class="modal-title">Edit Attribute</h4>
 </div>
 
 <div class="modal-body">
@@ -18,7 +18,7 @@
         <% end %>
 
         <div class="field">
-          <%= form.hidden_field :type_id, value: @attribute_type_id %>
+          <%= form.hidden_field :type_id, value: @type.id %>
         </div>
 
         <div class="field">
@@ -40,7 +40,7 @@
         <div class="field limit_image" id="image">
           <%= attribute_avatar(attribute) %>
           <%= form.file_field :icon %>
-          <img class="limit_image" id="blah" src="#" alt="Updated image"/>
+          <img class="limit_image" id="update-image-attribute-new" src="#" alt="Updated image"/>
         </div>
 
         <div class="red-error-message" id="message-icon"></div>
@@ -55,7 +55,6 @@
     <% end %>
   </div>
 </div>
-
 
 <div class="modal-footer">
   <button type="button" class="btn btn-secondary" id="close-button-edit-attribute">Close</button>

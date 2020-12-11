@@ -1,5 +1,5 @@
 <div class="modal-header">
-  <h4 class="modal-title h1-value">List of Character Attributes for Type: <%=@attribute_type_name%></h4>
+  <h4 class="modal-title h1-value">List of Character Attributes for Type: <%=@type.name%></h4>
 </div>
 
 <div class="modal-body">
@@ -26,7 +26,7 @@
 
 </div>
 
-<%= link_to 'New Attribute', new_attribute_path(:type_id => @attribute_type_id), {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#modal-window-new-attribute', 'class'=> "new-attribute-button"} %>
+<%= link_to 'New Attribute', new_attribute_path(:type_id => @type.id), {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#modal-window-new-attribute', 'class'=> "new-attribute-button"} %>
 
 <%= render 'modals' %>
 
@@ -39,6 +39,3 @@
 <div class="modal-footer">
   <button type="button" class="btn btn-secondary" id="close-button-index">Close</button>
 </div>
-
-
-

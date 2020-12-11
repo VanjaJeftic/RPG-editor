@@ -37,24 +37,18 @@ class TypesController < ApplicationController
     respond_to do |format|
       if @type.save
         format.js
-        format.html { redirect_to @type, notice: 'Type was successfully created.' }
-        format.json { render :show, status: :created, location: @type }
       else
-        format.html { render :new }
-        format.json { render json: @type.errors, status: :unprocessable_entity }
+        render :index
       end
     end
   end
 
   def update
     respond_to do |format|
-      if @type.update(type_params)
+      if @type.update(type_params_update)
         format.js
-        format.html { redirect_to @type, notice: 'Type was successfully updated.' }
-        format.json { render :show, status: :ok, location: @type }
       else
-        format.html { render :edit }
-        format.json { render json: @type.errors, status: :unprocessable_entity }
+        render :index
       end
     end
   end
@@ -63,8 +57,6 @@ class TypesController < ApplicationController
     @type.destroy
     respond_to do |format|
       format.js
-      format.html { redirect_to type_path, notice: 'Type was successfully destroyed.' }
-      format.json { head :no_content }
     end
   end
 
@@ -75,6 +67,11 @@ class TypesController < ApplicationController
   end
 
   def type_params
-    params.require(:type).permit(:name, :image, :user_id, :show_all, :page)
+    params.require(:type).permit(:name, :image, :user_id)
   end
+
+  def type_params_update
+    params.require(:type).permit(:name, :image)
+  end
+
 end

@@ -6,4 +6,3 @@
   <td><button class="edit-button-attribute"><%= link_to 'Edit', edit_attribute_path(attribute, :type_id => attribute.type_id), {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#modal-window-show'} %></button></td>
   <td><button class="destroy-button-attribute"><%= link_to 'Destroy', attribute, method: :delete, data: { remote: true }, class: "delete" %></button></td>
 </tr>
-
