@@ -1,5 +1,5 @@
 class AttributesController < ApplicationController
-  load_and_authorize_resource
+  load_and_authorize_resource :attribute, through: :type
   before_action :set_type
   before_action :set_attribute, only: [:show, :edit, :update, :destroy]
   respond_to :js, :html
