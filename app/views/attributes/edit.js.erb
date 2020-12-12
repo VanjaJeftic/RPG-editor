@@ -1,7 +1,7 @@
 $('#modal-window-edit-attribute').find(".modal-content").html("<%= j (render 'edit', attribute: @attribute) %>");
 $('#modal-window-edit-attribute').modal('show');
 
-function readURL(input) {
+function readURLattribute(input) {
     if (input.files && input.files[0]) {
         var reader = new FileReader();
         reader.onload = function (e) {
@@ -12,7 +12,7 @@ function readURL(input) {
 }
 
 $("#attribute_icon").change(function(){
-    readURL(this);
+    readURLattribute(this);
 });
 
 $("#close-button-edit-attribute").click(function(e){

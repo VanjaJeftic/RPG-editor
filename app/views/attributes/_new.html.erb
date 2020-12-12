@@ -4,7 +4,7 @@
 
 <div class="modal-body">
   <div class="center">
-      <%= form_for(@attribute, remote: true) do |form| %>
+      <%= form_for([@type, @attribute], remote: true) do |form| %>
 
       <div class="login">
         <% if @attribute.errors.any? %>
@@ -38,7 +38,7 @@
         <div class="red-error-message" id="message-numerical"></div>
 
         <div class="field limit_image", id="image">
-          <%= attribute_avatar(attribute) %>
+          <%= attribute_avatar(@attribute) %>
           <%= form.label :icon %>
           <%= form.file_field :icon %>
           <img id="image-attribute-append" src="#" />

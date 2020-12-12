@@ -1,6 +1,7 @@
 class TypesController < ApplicationController
   load_and_authorize_resource
   before_action :set_type, only: [:show, :edit, :update, :destroy]
+  respond_to :js, :html
 
   def index
     @types = current_user.types.order('created_at DESC').page(params[:page]).per(4)
@@ -10,17 +11,9 @@ class TypesController < ApplicationController
              else
                current_user.types.order('created_at DESC').page(params[:page]).per(4)
              end
-
-    respond_to do |format|
-      format.js
-      format.html
-    end
   end
 
   def show
-    respond_to do |format|
-      format.js
-    end
   end
 
   def new
@@ -34,30 +27,15 @@ class TypesController < ApplicationController
   def create
     @type = Type.new(type_params)
     @type.user_id = current_user.id
-    respond_to do |format|
-      if @type.save
-        format.js
-      else
-        render :index
-      end
-    end
+    render :index if @type.save != true
   end
 
   def update
-    respond_to do |format|
-      if @type.update(type_params_update)
-        format.js
-      else
-        render :index
-      end
-    end
+    render :index if @type.update(type_params_update) != true
   end
 
   def destroy
     @type.destroy
-    respond_to do |format|
-      format.js
-    end
   end
 
   private
@@ -73,5 +51,4 @@ class TypesController < ApplicationController
   def type_params_update
     params.require(:type).permit(:name, :image)
   end
-
 end

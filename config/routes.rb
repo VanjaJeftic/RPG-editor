@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
-  resources :attributes
-  resources :types
+  resources :types do
+    resources :attributes
+  end
   root 'pages#home'
   devise_for :users
-
 end

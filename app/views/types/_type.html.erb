@@ -4,5 +4,5 @@
   <td><button class="show-button-type"><%= link_to 'Show',  type_path(type), {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#modal-window-show'}%></button></td>
   <td><button class="edit-button-type"><%= link_to 'Edit', edit_type_path(type), {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#modal-window-edit'} %></button></td>
   <td><button class="destroy-button-type"><%= link_to 'Destroy', type, method: :delete, data: { remote: true }, class: "delete" %></button></td>
-  <td><button class="attributes-button-type"><%= link_to 'List of Attributes', attributes_path(:type_id => type.id), {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#modal-window-all-attributes'} %></button></td>
+  <td><button class="attributes-button-type"><%= link_to 'List of Attributes', type_attributes_path(:type_id => type.id), {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#modal-window-all-attributes'} %></button></td>
 </tr>

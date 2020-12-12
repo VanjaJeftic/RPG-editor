@@ -4,7 +4,7 @@
 
 <div class="modal-body">
   <div class="center">
-    <%= form_with(model: attribute, remote: true) do |form| %>
+    <%= form_with(model: [@type, attribute], remote: true) do |form| %>
       <div class="login">
         <% if attribute.errors.any? %>
           <div id="error_explanation">
@@ -37,7 +37,7 @@
         <div class="red-error-message" id="message-numerical-number"></div>
 
         <h6>Icon</h6>
-        <div class="field limit_image" id="image">
+        <div class="field limit_image" id="image-attribute">
           <%= attribute_avatar(attribute) %>
           <%= form.file_field :icon %>
           <img class="limit_image" id="update-image-attribute-new" src="#" alt="Updated image"/>
