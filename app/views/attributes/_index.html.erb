@@ -38,3 +38,14 @@
 <div class="modal-footer">
   <button type="button" class="btn btn-secondary" id="close-button-index">Close</button>
 </div>
+
+<script>
+    var pathname = window.location.pathname; // Returns path only (/path/example.html)
+    var search_from_url = window.location.search
+    var sum = pathname + search_from_url
+    if (sum == '/types?show_all=true' ){
+        $(".edit-button-attribute" ).hide();
+        $(".destroy-button-attribute").hide();
+        $(".new-attribute-button").hide();
+    }
+</script>

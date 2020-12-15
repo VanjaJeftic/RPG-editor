@@ -20,18 +20,6 @@ $("#close-button-new-attribute").click(function(e){
 });
 
 $('#submit-button-attribute').click(function(){
-    if($('#attribute_name').val() == ''){
-        var $messageDiv = $('#message-name-attr');
-        $messageDiv.show().html('Name can not be left blank!');
-    }else{
-        $('#message-name').hide();
-    }
-    if($('#attribute_numerical').val() == ''){
-        var $messageDiv = $('#message-numerical'); // get the reference of the div
-        $messageDiv.show().html('Numerical value can not be left blank!');
-    }else{
-        $('#message-numerical').hide();
-    }
     if($('#attribute_name').val() != '' && $('#attribute_numerical').val() != ''){
         $('#modal-window-new-attribute').modal('hide');
     }

@@ -1,5 +1,4 @@
 Feature: Type management
-
   In order to manage types
   As an user
   I want to create, edit and delete types
@@ -41,4 +40,3 @@ Feature: Type management
       Then I should see a new type
       When I click on Destroy link
       Then I should not see created Type
-

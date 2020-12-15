@@ -657,3 +657,15 @@ td:nth-child(1){
 .highlight-attribute{
     background-color: yellow !important;
 }
+
+.red-collor-letter{
+    color: red;
+    background-color: greenyellow;
+    align-content: center;
+    text-align: center;
+    font-size: 30px;
+}
+
+#error_explanation{
+    width: 280px !important;
+}

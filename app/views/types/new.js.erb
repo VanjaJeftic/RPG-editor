@@ -20,14 +20,7 @@ $("#close-button-new-type").click(function(e){
 });
 
 $('#submit-button').click(function(){
-    if($('#name-field').val() == ''){
-        var $messageDiv = $('#message-name');
-        $messageDiv.show().html('Name can not be left blank!');
-    }else{
-        $('#message-name').hide();
-    }
-    if($('#name-field').val() != '' ){
+    if($('#name-field').val() != '' ) {
         $('#myModal').modal('hide');
-
     }
 });

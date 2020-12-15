@@ -1,11 +1,10 @@
 $('.delete').bind('ajax:success', function(){
-   $(this).closest('tr').fadeOut();
+   $(this).closest('tr').remove();
 });
 
-var pathname = window.location.pathname; // Returns path only (/path/example.html)
-var search_from_url = window.location.search
-var sum = pathname + search_from_url
-
-if(sum == '/types' || sum == '/types?show_all=false'){
-    $.ajax({url: "/types", type: "GET"})
+var rowCount = $('#types-render tr').length;
+if (rowCount < 5){
+    if($("#paginator").children('.pagination').length == 1){
+        window.location.reload();
+    }
 }

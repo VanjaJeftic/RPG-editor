@@ -1,5 +1,4 @@
 Feature: User authentification
-
   In order to access website
   As an user
   I should have an option to sign in, sign up and sign out
@@ -25,4 +24,3 @@ Feature: User authentification
     Then I should see Signed in successfully
     When I click on Sign out link
     Then I should be redirected to the homepage
-

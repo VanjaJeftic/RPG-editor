@@ -5,7 +5,7 @@ function readURL(input) {
     if (input.files && input.files[0]) {
         var reader = new FileReader();
         reader.onload = function (e) {
-            $('#type-image-update').attr('src', e.target.result);
+            $('#image img').attr('src', e.target.result);
         }
         reader.readAsDataURL(input.files[0]);
     }
@@ -15,25 +15,12 @@ $("#type_image").change(function(){
     readURL(this);
 });
 
-$( document ).ready(function() {
-    $("#update-button").click(function(){
-        $('#modal-window-edit').modal('hide');
-    });
-
-});
-
 $("#close-button").click(function(e){
     $('#modal-window-edit').modal('hide');
 });
 
 $('#update-button').click(function(){
-    if($('#name-field').val() == ''){
-        var $messageDiv = $('#message-name'); // get the reference of the div
-        $messageDiv.show().html('Name can not be left blank!');
-    }else{
-        $('#message-name').hide();
-    }
-    if($('#name-field').val() != ''){
-        $('#myModal').modal('hide');
+    if($('#type_name').val() != '') {
+        $('#modal-window-edit').modal('hide');
     }
 });

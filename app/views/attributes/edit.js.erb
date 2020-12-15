@@ -1,18 +1,18 @@
 $('#modal-window-edit-attribute').find(".modal-content").html("<%= j (render 'edit', attribute: @attribute) %>");
 $('#modal-window-edit-attribute').modal('show');
 
-function readURLattribute(input) {
+function readURL_attribute(input) {
     if (input.files && input.files[0]) {
         var reader = new FileReader();
         reader.onload = function (e) {
-            $('#update-image-attribute-new').attr('src', e.target.result);
+            $('#image-attribute img').attr('src', e.target.result);
         }
         reader.readAsDataURL(input.files[0]);
     }
 }
 
 $("#attribute_icon").change(function(){
-    readURLattribute(this);
+    readURL_attribute(this);
 });
 
 $("#close-button-edit-attribute").click(function(e){
@@ -20,18 +20,6 @@ $("#close-button-edit-attribute").click(function(e){
 });
 
 $('#update-button-attribute').click(function(){
-    if($('#attribute_name').val() == ''){
-        var $messageDiv = $('#message-name'); // get the reference of the div
-        $messageDiv.show().html('Name can not be left blank!');
-    }else{
-        $('#message-name').hide();
-    }
-    if($('#attribute_numerical').val() == '' || isNaN($('#attribute_numerical').val())){
-        var $messageDiv = $('#message-numerical'); // get the reference of the div
-        $messageDiv.show().html('Numerical value can not be left blank and it must be number!');
-    }else{
-        $('#message-numerical').hide();
-    }
     if($('#attribute_name').val() != '' && $('#attribute_numerical').val() != ''){
         $('#modal-window-edit-attribute').modal('hide');
     }

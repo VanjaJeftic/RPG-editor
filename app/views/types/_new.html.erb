@@ -18,25 +18,20 @@
           </div>
         <% end %>
 
-        <% @type.errors.full_messages.each do |error| %>
-          <li><%= error %></li>
-        <% end %>
-
         <div class="field" >
           <%= form.label :name %>
           <%= form.text_field :name, id: "name-field",autocomplete: "name"%>
         </div>
 
-        <div class="red-error-message" id="message-name"></div>
-
-        <div class="field limit_image", id="image">
-          <%= type_avatar(type) %>
-          <%= form.label :image %>
+        <div class="field limit_image" id="image">
+          <%= form.label :image %>   </br >
+          <% if @type.image.attached? && @type.image.persisted? %>
+            <%= image_tag @type.image %>
+          <% else %>
+            <%= image_tag("download.png", :alt => "no image", :id => "new-image-type-added") %>
+          <% end %>
           <%= form.file_field :image %>
-          <img id="new-image-type-added" src="#" />
         </div>
-
-        <div class="red-error-message" id="message-icon"></div>
 
         <div class="actions style-button-create">
           <button id="submit-button">

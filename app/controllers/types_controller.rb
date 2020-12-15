@@ -1,4 +1,5 @@
 class TypesController < ApplicationController
+  before_action :authenticate_user!
   load_and_authorize_resource
   before_action :set_type, only: [:show, :edit, :update, :destroy]
   respond_to :js, :html
@@ -27,11 +28,11 @@ class TypesController < ApplicationController
   def create
     @type = Type.new(type_params)
     @type.user_id = current_user.id
-    render :index if @type.save != true
+    render :new if @type.save != true
   end
 
   def update
-    render :index if @type.update(type_params_update) != true
+    render :edit if @type.update(type_params_update) != true
   end
 
   def destroy
@@ -50,5 +51,13 @@ class TypesController < ApplicationController
 
   def type_params_update
     params.require(:type).permit(:name, :image)
+  end
+
+  def authenticate_user!
+    if user_signed_in?
+      super
+    else
+      redirect_to root_path, notice: 'Please Sign In or Sign Up to view that page!'
+    end
   end
 end

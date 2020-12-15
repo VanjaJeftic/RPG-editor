@@ -1,5 +1,5 @@
 class AttributesController < ApplicationController
-  load_and_authorize_resource :attribute, through: :type
+  load_and_authorize_resource
   before_action :set_type
   before_action :set_attribute, only: [:show, :edit, :update, :destroy]
   respond_to :js, :html
@@ -21,11 +21,11 @@ class AttributesController < ApplicationController
   def create
     @attribute = Attribute.new(attribute_params)
     @attribute.user_id = @type.user_id
-    render partial: 'attributes/index' if @attribute.save != true
+    render :new if @attribute.save != true
   end
 
   def update
-    render partial: 'attributes/index' if @attribute.update(attribute_params_update) != true
+    render :edit if @attribute.update(attribute_params_update) != true
   end
 
   def destroy

@@ -1,19 +1,14 @@
 $('#types_table').prepend('<%= j render partial: "type", locals: {type: @type} %>');
 
-var rowCount = $('#attributes_table tr').length;
-if (rowCount > 5){
-    $('#types_table tr').last().hide();
+var rowCount = $('#types-render tr').length;
+if (rowCount > 4){
+    $('#types_table tr').last().remove();
+    if($("#paginator").children('.pagination').length == 0){
+        window.location.reload();
+    }
 }
 
-var url = window.location.href;     // Returns full URL (https://example.com/path/example.html)
-
-if(url == 'http://localhost:3000/types' || url == 'http://localhost:3000/types?show_all=false' ){
-    $.ajax({url: "/types", type: "GET"})
-}
-
+$('tr').eq(1).addClass("highlight");
 setTimeout(function() {
-  $('tr').eq(1).addClass("highlight");
-  setTimeout(function() {
-      $( "tr" ).removeClass('highlight');
-  }, 3000);
-}, 100);
+    $( "tr" ).removeClass('highlight');
+}, 3000);

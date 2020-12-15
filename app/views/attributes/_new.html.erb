@@ -4,7 +4,7 @@
 
 <div class="modal-body">
   <div class="center">
-      <%= form_for([@type, @attribute], remote: true) do |form| %>
+      <%= form_with(model: [@type, @attribute], remote: true) do |form| %>
 
       <div class="login">
         <% if @attribute.errors.any? %>
@@ -19,7 +19,11 @@
           </div>
         <% end %>
 
-        <div class="field">
+        <div  class="red-collor-letter">
+          <%= notice %>
+        </div>
+
+        <div class="field" id="defined_type_id">
           <%= form.hidden_field :type_id, value: @type.id %>
         </div>
 
@@ -28,23 +32,21 @@
           <%= form.text_field :name %>
         </div>
 
-        <div class="red-error-message" id="message-name-attr"></div>
-
         <div class="field">
           <%= form.label :numerical, 'Numerical value' %>
           <%= form.number_field :numerical %>
         </div>
 
-        <div class="red-error-message" id="message-numerical"></div>
-
         <div class="field limit_image", id="image">
-          <%= attribute_avatar(@attribute) %>
           <%= form.label :icon %>
-          <%= form.file_field :icon %>
-          <img id="image-attribute-append" src="#" />
-        </div>
+          <% if @attribute.icon.attached? && @attribute.icon.persisted? %>
+            <%= image_tag @attribute.icon %>
+          <% else %>
+            <%= image_tag("download.png", :alt => "no image", :id => "image-attribute-append") %>
+          <% end %>
 
-        <div class="red-error-message" id="message-icon"></div>
+          <%= form.file_field :icon %>
+        </div>
 
         <div class="actions style-button-create">
           <button id="submit-button-attribute">

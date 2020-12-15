@@ -20,7 +20,17 @@ jobs:
         uses: actions/setup-ruby@v1
         with:
           ruby-version: 2.7.x
-
+      - name: Install PostgreSQL 11 client
+        run: sudo apt-get -yqq install libpq-dev
+      - name: Cache Gems
+        uses: actions/cache@v2
+        with:
+          path: vendor/bundle
+          key: ${{ runner.os }}-gem-${{ hashFiles('**/Gemfile.lock') }}
+          restore-keys: |
+              ${{ runner.os }}-gem-
+      - name: Install Bundler
+        run: gem install bundler
       - name: Build App
         env:
           PGHOST: localhost
@@ -36,4 +46,13 @@ jobs:
           PGHOST: localhost
           PGUSER: postgres
           RAILS_ENV: test
-        run: bundle exec rspec
+        run: |
+          bin/rails db:setup
+          bundle exec rspec
+          cucumber features
+      - name: Check security with Brakeman
+        run: bundle exec brakeman
+      - name: Rubocop
+        run: bundle exec rubocop
+      - name: Code smell detect with reek
+        run: bundle exec reek

@@ -4,13 +4,13 @@
 
 <div class="modal-body">
   <div class="center">
-    <%= form_with(model: [@type, attribute], remote: true) do |form| %>
+    <%= form_with(model: [@type, @attribute], remote: true) do |form| %>
       <div class="login">
-        <% if attribute.errors.any? %>
+        <% if @attribute.errors.any? %>
           <div id="error_explanation">
-            <h2><%= pluralize(attribute.errors.count, "error") %> prohibited this attribute from being saved:</h2>
+            <h2><%= pluralize(@attribute.errors.count, "error") %> prohibited this attribute from being saved:</h2>
             <ul>
-              <% attribute.errors.full_messages.each do |message| %>
+              <% @attribute.errors.full_messages.each do |message| %>
                 <li><%= message %></li>
               <% end %>
             </ul>
@@ -26,24 +26,20 @@
           <%= form.text_field :name %>
         </div>
 
-        <div class="red-error-message" id="message-name"></div>
-
         <div class="field">
           <%= form.label :numerical %>
           <%= form.text_field :numerical %>
         </div>
 
-        <div class="red-error-message" id="message-numerical"></div>
-        <div class="red-error-message" id="message-numerical-number"></div>
-
-        <h6>Icon</h6>
         <div class="field limit_image" id="image-attribute">
-          <%= attribute_avatar(attribute) %>
+          <%= form.label :icon %> </br >
+          <% if @attribute.icon.attached? && @attribute.icon.persisted? %>
+            <%= image_tag @attribute.icon %>
+          <% else %>
+            <%= image_tag("download.png", :alt => "no image", :id => "update-image-attribute-new") %>
+          <% end %>
           <%= form.file_field :icon %>
-          <img class="limit_image" id="update-image-attribute-new" src="#" alt="Updated image"/>
         </div>
-
-        <div class="red-error-message" id="message-icon"></div>
 
         <div class="actions">
           <button id="update-button-attribute">
@@ -55,7 +51,6 @@
     <% end %>
   </div>
 </div>
-
 <div class="modal-footer">
   <button type="button" class="btn btn-secondary" id="close-button-edit-attribute">Close</button>
 </div>

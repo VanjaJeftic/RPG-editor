@@ -7,3 +7,12 @@ $("#paginator-attributes").html("<%= j(paginate(@attributes, :remote => true))%>
 $("#close-button-index").click(function(e){
     $('#modal-window-all-attributes').modal('hide');
 });
+
+var pathname = window.location.pathname; // Returns path only (/path/example.html)
+var search_from_url = window.location.search
+var sum = pathname + search_from_url
+if (sum == '/types?show_all=true' ){
+  $(".edit-button-attribute").hide();
+  $(".destroy-button-attribute").hide();
+  $(".new-attribute-button").hide();
+}
