@@ -1,14 +1,14 @@
 $('#modal-window-all-attributes').find(".modal-content").html("<%= j (render 'index') %>");
 $('#modal-window-all-attributes').modal('show');
 
-$("#attributes-render").html("<%= j render(@attributes) %>");
+$("#attributes-render").html("<%= j render partial: 'attribute', collection: @attributes %>");
 $("#paginator-attributes").html("<%= j(paginate(@attributes, :remote => true))%>");
 
 $("#close-button-index").click(function(e){
     $('#modal-window-all-attributes').modal('hide');
 });
 
-var pathname = window.location.pathname; // Returns path only (/path/example.html)
+var pathname = window.location.pathname;
 var search_from_url = window.location.search
 var sum = pathname + search_from_url
 if (sum == '/types?show_all=true' ){
