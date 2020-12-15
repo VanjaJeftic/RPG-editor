@@ -38,7 +38,6 @@ jobs:
           RAILS_ENV: test
         run: |
           sudo apt-get -yqq install libpq-dev
-          gem install bundler
           bundle install --jobs 4 --retry 3
           bin/rails db:setup
       - name: Run Tests
@@ -47,12 +46,11 @@ jobs:
           PGUSER: postgres
           RAILS_ENV: test
         run: |
-          bin/rails db:setup
           bundle exec rspec
           cucumber features
       - name: Check security with Brakeman
         run: bundle exec brakeman
-      - name: Rubocop
+      - name: Check Rubocop
         run: bundle exec rubocop
-      - name: Code smell detect with reek
+      - name: Detect with reek
         run: bundle exec reek
