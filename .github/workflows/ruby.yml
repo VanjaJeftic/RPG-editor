@@ -47,7 +47,6 @@ jobs:
           RAILS_ENV: test
         run: |
           bundle exec rspec
-          cucumber features
       - name: Check security with Brakeman
         run: bundle exec brakeman
       - name: Check Rubocop
