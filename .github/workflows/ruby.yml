@@ -47,9 +47,9 @@ jobs:
           RAILS_ENV: test
         run: |
           bundle exec rspec
-      - name: Check security with Brakeman
-        run: bundle exec brakeman
       - name: Check Rubocop
         run: bundle exec rubocop
       - name: Detect with reek
         run: bundle exec reek
+      - name: Check security with Brakeman
+        run: bundle exec brakeman

@@ -15,14 +15,14 @@ gem 'turbolinks', '~> 5'
 gem 'webpacker', '~> 4.0'
 
 group :development do
+  gem 'brakeman', require: false
   gem 'listen', '~> 3.2'
   gem 'mini_magick', '~> 4.5', '>= 4.5.1'
+  gem 'reek'
   gem 'rubocop'
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'web-console', '>= 3.3.0'
-  gem 'brakeman', require: false
-  gem 'reek'
 end
 
 group :test do
