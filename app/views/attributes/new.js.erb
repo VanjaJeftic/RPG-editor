@@ -5,13 +5,13 @@ function readURL(input) {
     if (input.files && input.files[0]) {
         var reader = new FileReader();
         reader.onload = function (e) {
-            $('#image-attribute-append').attr('src', e.target.result);
+            $('#image-new-attribute img').attr('src', e.target.result);
         }
         reader.readAsDataURL(input.files[0]);
     }
 }
 
-$("#attribute_icon").change(function(){
+$("#icon-attribute-new-id").change(function(){
     readURL(this);
 });
 
@@ -20,7 +20,7 @@ $("#close-button-new-attribute").click(function(e){
 });
 
 $('#submit-button-attribute').click(function(){
-    if($('#attribute_name').val() != '' && $('#attribute_numerical').val() != ''){
+    if($('#name-field1').val() != '' && $('#numerical-field-new').val() != ''){
         $('#modal-window-new-attribute').modal('hide');
     }
 });

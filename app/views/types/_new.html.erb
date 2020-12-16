@@ -30,7 +30,7 @@
           <% else %>
             <%= image_tag("download.png", :alt => "no image", :id => "new-image-type-added") %>
           <% end %>
-          <%= form.file_field :image %>
+          <%= form.file_field :image, id: "type-image-id-new"%>
         </div>
 
         <div class="actions style-button-create">

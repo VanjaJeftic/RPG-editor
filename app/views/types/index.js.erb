@@ -1,4 +1,4 @@
-$("#types-render").html("<%= j render partial: 'types', collection: @types %>")
+$("#types-render").html("<%= j render partial: 'type', collection: @types %>")
 $("#paginator").html("<%= j(paginate(@types, :remote => true))%>");
 
 var pathname = window.location.pathname;

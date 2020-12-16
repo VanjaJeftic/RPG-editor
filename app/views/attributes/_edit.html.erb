@@ -23,22 +23,22 @@
 
         <div class="field">
           <%= form.label :name %>
-          <%= form.text_field :name %>
+          <%= form.text_field :name,  id: "name-field2" %>
         </div>
 
         <div class="field">
           <%= form.label :numerical %>
-          <%= form.text_field :numerical %>
+          <%= form.text_field :numerical, id: 'numerical-edit-field' %>
         </div>
 
-        <div class="field limit_image" id="image-attribute">
+        <div class="field limit_image" id="image-attribute-edit">
           <%= form.label :icon %> </br >
           <% if @attribute.icon.attached? && @attribute.icon.persisted? %>
             <%= image_tag @attribute.icon %>
           <% else %>
             <%= image_tag("download.png", :alt => "no image", :id => "update-image-attribute-new") %>
           <% end %>
-          <%= form.file_field :icon %>
+          <%= form.file_field :icon, id: 'icon-edit-attribute' %>
         </div>
 
         <div class="actions">

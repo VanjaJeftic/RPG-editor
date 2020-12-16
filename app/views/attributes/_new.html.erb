@@ -29,15 +29,15 @@
 
         <div class="field">
           <%= form.label :name %>
-          <%= form.text_field :name %>
+          <%= form.text_field :name, id: "name-field1" %>
         </div>
 
         <div class="field">
           <%= form.label :numerical, 'Numerical value' %>
-          <%= form.number_field :numerical %>
+          <%= form.number_field :numerical, id: "numerical-field-new" %>
         </div>
 
-        <div class="field limit_image", id="image">
+        <div class="field limit_image", id="image-new-attribute">
           <%= form.label :icon %>
           <% if @attribute.icon.attached? && @attribute.icon.persisted? %>
             <%= image_tag @attribute.icon %>
@@ -45,7 +45,7 @@
             <%= image_tag("download.png", :alt => "no image", :id => "image-attribute-append") %>
           <% end %>
 
-          <%= form.file_field :icon %>
+          <%= form.file_field :icon, id: 'icon-attribute-new-id' %>
         </div>
 
         <div class="actions style-button-create">
