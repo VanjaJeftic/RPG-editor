@@ -2,9 +2,11 @@ class Ability
   include CanCan::Ability
 
   def initialize(user)
-    can :read, :all
+    return unless user.present?
 
-    can [:create, :update, :destroy], Type, user_id: user.id if user.present?
-    can [:create, :update, :destroy], Attribute, user_id: user.id if user.present?
+    can :read, Type, user_id: user.id
+    can :manage, Type, user_id: user.id
+    can :read, Attribute, user_id: user.id
+    can :manage, Attribute
   end
 end

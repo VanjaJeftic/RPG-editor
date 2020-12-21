@@ -14,8 +14,7 @@ class ApplicationController < ActionController::Base
     root_path(current_user)
   end
 
-  rescue_from CanCan::AccessDenied do |exception|
-    exception.default_message = 'You can not manage types you did not created!'
-    redirect_to '/types?show_all=true', alert: exception.message
+  rescue_from CanCan::AccessDenied do |_exception|
+    redirect_to root_path, notice: 'Please Sign In or Sign Up to view that page!'
   end
 end

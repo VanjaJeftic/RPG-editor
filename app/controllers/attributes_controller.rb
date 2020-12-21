@@ -1,31 +1,22 @@
 class AttributesController < ApplicationController
-  load_and_authorize_resource
+  load_and_authorize_resource except: [:index]
+  before_action :authenticate_user!
   before_action :set_type
-  before_action :set_attribute, only: [:show, :edit, :update, :destroy]
   respond_to :js, :html
 
   def index
-    @attributes = @type.attributes_association.order('created_at DESC').page(params[:page]).per(4)
-  end
-
-  def show
-  end
-
-  def new
-    @attribute = Attribute.new
-  end
-
-  def edit
+    @attributes = @type.character_attributes.order('created_at DESC').page(params[:page]).per(4)
   end
 
   def create
-    @attribute = Attribute.new(attribute_params)
-    @attribute.user_id = @type.user_id
-    render :new if @attribute.save != true
+    @attribute = @type.character_attributes.new(attribute_params)
+    saved = @attribute.save
+    render :new unless saved
   end
 
   def update
-    render :edit if @attribute.update(attribute_params_update) != true
+    updated = @attribute.update(attribute_params_update)
+    render :edit unless updated
   end
 
   def destroy
@@ -33,10 +24,6 @@ class AttributesController < ApplicationController
   end
 
   private
-
-  def set_attribute
-    @attribute = Attribute.find(params[:id])
-  end
 
   def set_type
     @type = Type.find(params[:type_id])
