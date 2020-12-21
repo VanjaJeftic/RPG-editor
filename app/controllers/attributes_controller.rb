@@ -1,6 +1,5 @@
 class AttributesController < ApplicationController
   load_and_authorize_resource except: [:index]
-  before_action :authenticate_user!
   before_action :set_type
   respond_to :js, :html
 

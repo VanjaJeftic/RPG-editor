@@ -4,11 +4,10 @@ class TypesController < ApplicationController
   respond_to :js, :html
 
   def index
-    @types = if params[:show_all] == 'true'
-               Type.all.order('created_at DESC').page(params[:page]).per(4)
-             else
-               @types.order('created_at DESC').page(params[:page]).per(4)
-             end
+    show_all_types = Type.all.order('created_at DESC').page(params[:page]).per(4)
+    show_types_user_created = @types.order('created_at DESC').page(params[:page]).per(4)
+
+    @types = params[:show_all] == 'true' ? show_all_types : show_types_user_created
   end
 
   def create
