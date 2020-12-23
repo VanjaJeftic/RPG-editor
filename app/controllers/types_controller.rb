@@ -9,7 +9,7 @@ class TypesController < ApplicationController
   end
 
   def show
-    @type = Type.find(params[:id])
+    #@type = @type.find(params[:id])
   end
 
   def create
