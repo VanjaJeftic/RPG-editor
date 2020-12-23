@@ -1,5 +1,5 @@
 class AttributesController < ApplicationController
-  load_and_authorize_resource except: [:index]
+  load_and_authorize_resource
   before_action :set_type, except: [:destroy]
   respond_to :js, :html
 

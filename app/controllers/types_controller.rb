@@ -1,9 +1,9 @@
 class TypesController < ApplicationController
-  load_and_authorize_resource except: [:show]
+  load_and_authorize_resource
   respond_to :js, :html
 
   def index
-    @types = @types.order('created_at DESC').page(params[:page]).per(4)
+    @types = @types.where(user_id: current_user).order('created_at DESC').page(params[:page]).per(4)
 
     @types = Type.all.order('created_at DESC').page(params[:page]).per(4) if params[:show_all] == 'true'
   end
