@@ -8,10 +8,6 @@ class TypesController < ApplicationController
     @types = Type.all.order('created_at DESC').page(params[:page]).per(4) if params[:show_all] == 'true'
   end
 
-  def show
-    #@type = @type.find(params[:id])
-  end
-
   def create
     @type = current_user.types.new(type_params)
     saved = @type.save
