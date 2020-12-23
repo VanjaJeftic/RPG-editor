@@ -1,13 +1,15 @@
 class TypesController < ApplicationController
   load_and_authorize_resource except: [:show]
-  before_action :set_type, only: [:show]
   respond_to :js, :html
 
   def index
-    show_all_types = Type.all.order('created_at DESC').page(params[:page]).per(4)
-    show_types_user_created = @types.order('created_at DESC').page(params[:page]).per(4)
+    @types = @types.order('created_at DESC').page(params[:page]).per(4)
 
-    @types = params[:show_all] == 'true' ? show_all_types : show_types_user_created
+    @types = Type.all.order('created_at DESC').page(params[:page]).per(4) if params[:show_all] == 'true'
+  end
+
+  def show
+    @type = Type.find(params[:id])
   end
 
   def create
@@ -17,7 +19,7 @@ class TypesController < ApplicationController
   end
 
   def update
-    updated = @type.update(type_params_update)
+    updated = @type.update(type_params)
     render :edit unless updated
   end
 
@@ -27,15 +29,7 @@ class TypesController < ApplicationController
 
   private
 
-  def set_type
-    @type = Type.find(params[:id])
-  end
-
   def type_params
-    params.require(:type).permit(:name, :image)
-  end
-
-  def type_params_update
     params.require(:type).permit(:name, :image)
   end
 end

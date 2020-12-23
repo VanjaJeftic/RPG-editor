@@ -1,6 +1,6 @@
 class AttributesController < ApplicationController
   load_and_authorize_resource except: [:index]
-  before_action :set_type
+  before_action :set_type, except: [:destroy]
   respond_to :js, :html
 
   def index
@@ -14,7 +14,7 @@ class AttributesController < ApplicationController
   end
 
   def update
-    updated = @attribute.update(attribute_params_update)
+    updated = @attribute.update(attribute_params)
     render :edit unless updated
   end
 
@@ -30,9 +30,5 @@ class AttributesController < ApplicationController
 
   def attribute_params
     params.require(:attribute).permit(:name, :numerical, :type_id, :icon)
-  end
-
-  def attribute_params_update
-    params.require(:attribute).permit(:name, :numerical, :icon, :type_id)
   end
 end
