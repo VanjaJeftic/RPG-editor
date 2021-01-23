@@ -1,0 +1,62 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
+
+<div class="header">
+  <div class="screen-page">
+    <h1>RPG game editor</h1>
+      </br>
+      <div>
+        <%= link_to "Go Back", root_path, class: "go-back-button" %>
+      </div>
+  </div>
+</div>
+
+<div class="content">
+  <section class="content">
+    <div class="container">
+      <div class="page-header">
+      <span>
+          <%= link_to 'Show all created types', types_path(:show_all => true), class: "all-type-button"%>
+        <%= link_to 'Show types you created', types_path(:show_all => false), class: "all-type-button"%>
+    </span>
+        </br></br>
+        <h1>Character Types</h1>
+      </div>
+    </div>
+    <div id="paginator">
+      <%= paginate @types, :remote => true%>
+    </div>
+
+    <div class="bottom-margin">
+      <table id="types_table">
+        <thead>
+        <tr>
+          <th>Name</th>
+          <th>Avatar</th>
+          <th colspan="4"></th>
+        </tr>
+        </thead>
+
+        <tbody id="types-render">
+        <%= render @types %>
+        </tbody>
+      </table>
+    </div>
+    <br>
+    <%= link_to 'Create New Type', new_type_path(@type), {:remote => true, 'data-toggle'=> "modal", 'data-target'=> "#myModal", 'class'=> "new-type-button" } %>
+    <%= render 'modals' %>
+  </section>
+</div>
+<script>
+  var pathname = window.location.pathname;
+  var search_from_url = window.location.search
+  var sum = pathname + search_from_url
+  if (sum == '/types?show_all=true' ){
+      $(".edit-button-type" ).hide();
+      $(".destroy-button-type").hide();
+      $(".new-type-button").hide();
+  }
+</script>

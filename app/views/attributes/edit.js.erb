@@ -1,0 +1,26 @@
+$('#modal-window-edit-attribute').find(".modal-content").html("<%= j (render 'edit', attribute: @attribute) %>");
+$('#modal-window-edit-attribute').modal('show');
+
+function readURL_attribute(input) {
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function (e) {
+            $('#image-attribute-edit img').attr('src', e.target.result);
+        }
+        reader.readAsDataURL(input.files[0]);
+    }
+}
+
+$("#icon-edit-attribute").change(function(){
+    readURL_attribute(this);
+});
+
+$("#close-button-edit-attribute").click(function(e){
+    $('#modal-window-edit-attribute').modal('hide');
+});
+
+$('#update-button-attribute').click(function(){
+    if($('#name-field2').val() != '' && $('#numerical-edit-field').val() != ''){
+        $('#modal-window-edit-attribute').modal('hide');
+    }
+});

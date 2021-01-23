@@ -1,0 +1,11 @@
+$("#types-render").html("<%= j render partial: 'type', collection: @types %>")
+$("#paginator").html("<%= j(paginate(@types, :remote => true))%>");
+
+var pathname = window.location.pathname;
+var search_from_url = window.location.search
+var sum = pathname + search_from_url
+if (sum == '/types?show_all=true' ){
+    $(".edit-button-type" ).hide();
+    $(".destroy-button-type").hide();
+    $(".new-type-button").hide();
+}

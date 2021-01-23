@@ -1,0 +1,51 @@
+<div class="modal-header">
+  <h4 class="modal-title h1-value">List of Character Attributes for Type: <%=@type.name%></h4>
+</div>
+
+<div class="modal-body">
+  <p id="notice"><%= notice %></p>
+
+  <div id="paginator-attributes">
+    <%=paginate @attributes,  :remote => true %>
+  </div>
+
+  <table id="attributes_table">
+    <thead>
+    <tr>
+      <th>Name</th>
+      <th>Numerical</th>
+      <th>Icon</th>
+      <th colspan="3"></th>
+    </tr>
+    </thead>
+
+    <tbody id="attributes-render">
+      <%= render partial: 'attribute', collection: @attributes %>
+    </tbody>
+  </table>
+
+</div>
+
+<%= link_to 'New Attribute', new_type_attribute_path(@type), {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#modal-window-new-attribute', 'class'=> "new-attribute-button"} %>
+<%= render 'modals' %>
+
+<div id="modal-window-new-attribute" class="modal fade" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered max-width-1000">
+    <div class="modal-content"></div>
+  </div>
+</div>
+
+<div class="modal-footer">
+  <button type="button" class="btn btn-secondary" id="close-button-index">Close</button>
+</div>
+
+<script>
+    var pathname = window.location.pathname; // Returns path only (/path/example.html)
+    var search_from_url = window.location.search
+    var sum = pathname + search_from_url
+    if (sum == '/types?show_all=true' ){
+        $(".edit-button-attribute" ).hide();
+        $(".destroy-button-attribute").hide();
+        $(".new-attribute-button").hide();
+    }
+</script>

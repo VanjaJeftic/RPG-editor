@@ -1,0 +1,6 @@
+$('#modal-window-show').find(".modal-content").html("<%= j (render 'show', type: @type) %>");
+$('#modal-window-show').modal('show');
+
+$("#close-button-show-type").click(function(e){
+    $('#modal-window-show').modal('hide');
+});

@@ -1,0 +1,48 @@
+<div class="modal-header">
+  <h4 class="modal-title">Create new type</h4>
+</div>
+<div class="modal-body">
+  <div class="center">
+    <%= form_for(@type,  remote: true) do |form| %>
+
+      <div class="login">
+        <% if @type.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(@type.errors.count, "error") %> prohibited this type from being saved:</h2>
+
+            <ul>
+              <% @type.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
+
+        <div class="field" >
+          <%= form.label :name %>
+          <%= form.text_field :name, id: "name-field",autocomplete: "name"%>
+        </div>
+
+        <div class="field limit_image" id="image">
+          <%= form.label :image %>   </br >
+          <% if @type.image.attached? && @type.image.persisted? %>
+            <%= image_tag @type.image %>
+          <% else %>
+            <%= image_tag("download.png", :alt => "no image", :id => "new-image-type-added") %>
+          <% end %>
+          <%= form.file_field :image, id: "type-image-id-new"%>
+        </div>
+
+        <div class="actions style-button-create">
+          <button id="submit-button">
+          <%= form.submit %>
+          </button>
+        </div>
+
+      </div>
+    <% end %>
+  </div>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-secondary" id="close-button-new-type">Close</button>
+</div>

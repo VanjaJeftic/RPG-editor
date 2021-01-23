@@ -1,0 +1,63 @@
+<div class="modal-header">
+  <h4 class="modal-title">Create New Attribute</h4>
+</div>
+
+<div class="modal-body">
+  <div class="center">
+      <%= form_with(model: [@type, @attribute], remote: true) do |form| %>
+
+      <div class="login">
+        <% if @attribute.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(@attribute.errors.count, "error") %> prohibited this attribute from being saved:</h2>
+
+            <ul>
+              <% @attribute.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
+
+        <div  class="red-collor-letter">
+          <%= notice %>
+        </div>
+
+        <div class="field" id="defined_type_id">
+          <%= form.hidden_field :type_id, value: @type.id %>
+        </div>
+
+        <div class="field">
+          <%= form.label :name %>
+          <%= form.text_field :name, id: "name-field1" %>
+        </div>
+
+        <div class="field">
+          <%= form.label :numerical, 'Numerical value' %>
+          <%= form.number_field :numerical, id: "numerical-field-new" %>
+        </div>
+
+        <div class="field limit_image", id="image-new-attribute">
+          <%= form.label :icon %>
+          <% if @attribute.icon.attached? && @attribute.icon.persisted? %>
+            <%= image_tag @attribute.icon %>
+          <% else %>
+            <%= image_tag("download.png", :alt => "no image", :id => "image-attribute-append") %>
+          <% end %>
+
+          <%= form.file_field :icon, id: 'icon-attribute-new-id' %>
+        </div>
+
+        <div class="actions style-button-create">
+          <button id="submit-button-attribute">
+          <%= form.submit %>
+          </button>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<div class="modal-footer">
+  <button type="button" class="btn btn-secondary" id="close-button-new-attribute">Close</button>
+</div>

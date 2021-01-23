@@ -1,0 +1,11 @@
+one:
+  name: MyString
+  numerical: MyString
+  value: 1
+  type: one
+
+two:
+  name: MyString
+  numerical: MyString
+  value: 1
+  type: two

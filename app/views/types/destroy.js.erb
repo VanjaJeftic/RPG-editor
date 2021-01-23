@@ -1,0 +1,10 @@
+$('.delete').bind('ajax:success', function(){
+   $(this).closest('tr').remove();
+});
+
+var rowCount = $('#types-render tr').length;
+if (rowCount < 5){
+    if($("#paginator").children('.pagination').length == 1){
+        window.location.reload();
+    }
+}

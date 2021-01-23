@@ -1,0 +1,26 @@
+$('#modal-window-new-attribute').find(".modal-content").html("<%= j (render 'new', attribute: @attribute) %>");
+$('#modal-window-new-attribute').modal('show');
+
+function readURL(input) {
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function (e) {
+            $('#image-new-attribute img').attr('src', e.target.result);
+        }
+        reader.readAsDataURL(input.files[0]);
+    }
+}
+
+$("#icon-attribute-new-id").change(function(){
+    readURL(this);
+});
+
+$("#close-button-new-attribute").click(function(e){
+    $('#modal-window-new-attribute').modal('hide');
+});
+
+$('#submit-button-attribute').click(function(){
+    if($('#name-field1').val() != '' && $('#numerical-field-new').val() != ''){
+        $('#modal-window-new-attribute').modal('hide');
+    }
+});

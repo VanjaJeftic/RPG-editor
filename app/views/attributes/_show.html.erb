@@ -1,0 +1,27 @@
+<div class="modal-header">
+  <h4 class="modal-title">Character Attribute: <%=@attribute.name%></h4>
+</div>
+
+<div class="modal-body">
+  <div class="login">
+    <p id="notice"><%= notice %></p>
+      <p>
+        <strong>Name:</strong>
+        <%= @attribute.name %>
+      </p>
+      <p>
+        <strong>Numerical:</strong>
+        <%= @attribute.numerical %>
+      </p>
+      <p>
+        <strong>Icon:</strong>
+      <div style="width:200px; height: auto">
+        <%= image_tag(@attribute.icon, style: "width: 100%") if @attribute.icon.attached? %>
+      </div>
+    </p>
+  </div>
+</div>
+
+<div class="modal-footer">
+  <button type="button" class="btn btn-secondary" id="button-close-show-attribute">Close</button>
+</div>

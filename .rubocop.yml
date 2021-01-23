@@ -1,6 +1,9 @@
 require:
   - rubocop
-  - rubocop-rails
+
+inherit_mode:
+  merge:
+    - Exclude
 
 AllCops:
   NewCops: enable
@@ -20,9 +23,20 @@ AllCops:
     - "Guardfile"
     - "config/spring.rb"
     - "config/application.rb"
+    - 'generated/**/*.rb'
+    - 'db/**/*'
+    - 'config/**/*'
+    - 'script/**/*'
+    - 'bin/{rails,rake}'
+    - !ruby/regexp /old_and_unused\.rb$/
+    - "activerecord/**/*"
 
 Style/Documentation:
   Enabled: false
+
+Style/For:
+  Exclude:
+    - bar.rb
 
 Layout/LineLength:
   Max: 120
@@ -45,5 +59,6 @@ Metrics/MethodLength:
   Max: 20
 
 Metrics/BlockLength:
+  Max: 190
   Exclude:
     - "spec/**/*"

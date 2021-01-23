@@ -1,0 +1,56 @@
+<div class="modal-header">
+  <h4 class="modal-title">Edit Attribute</h4>
+</div>
+
+<div class="modal-body">
+  <div class="center">
+    <%= form_with(model: [@type, @attribute], remote: true) do |form| %>
+      <div class="login">
+        <% if @attribute.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(@attribute.errors.count, "error") %> prohibited this attribute from being saved:</h2>
+            <ul>
+              <% @attribute.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
+
+        <div class="field">
+          <%= form.hidden_field :type_id, value: @type.id %>
+        </div>
+
+        <div class="field">
+          <%= form.label :name %>
+          <%= form.text_field :name,  id: "name-field2" %>
+        </div>
+
+        <div class="field">
+          <%= form.label :numerical %>
+          <%= form.text_field :numerical, id: 'numerical-edit-field' %>
+        </div>
+
+        <div class="field limit_image" id="image-attribute-edit">
+          <%= form.label :icon %> </br >
+          <% if @attribute.icon.attached? && @attribute.icon.persisted? %>
+            <%= image_tag @attribute.icon %>
+          <% else %>
+            <%= image_tag("download.png", :alt => "no image", :id => "update-image-attribute-new") %>
+          <% end %>
+          <%= form.file_field :icon, id: 'icon-edit-attribute' %>
+        </div>
+
+        <div class="actions">
+          <button id="update-button-attribute">
+            <%= form.submit %>
+          </button>
+        </div>
+
+        </div>
+    <% end %>
+  </div>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-secondary" id="close-button-edit-attribute">Close</button>
+</div>

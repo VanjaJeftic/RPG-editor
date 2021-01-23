@@ -1,0 +1,11 @@
+$('#attributes_table').prepend('<%= j render partial: "attribute", locals: {attribute: @attribute} %>');
+
+var rowCount = $('#attributes_table tr').length;
+if (rowCount > 5){
+    $('#attributes_table tr').last().remove();
+}
+
+$('#attributes-render tr').first().addClass("highlight");
+setTimeout(function() {
+    $('#attributes-render tr').first().removeClass('highlight');
+}, 4000);

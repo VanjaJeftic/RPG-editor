@@ -1,0 +1,14 @@
+$('#types_table').prepend('<%= j render partial: "type", locals: {type: @type} %>');
+
+var rowCount = $('#types-render tr').length;
+if (rowCount > 4){
+    $('#types_table tr').last().remove();
+    if($("#paginator").children('.pagination').length == 0){
+        window.location.reload();
+    }
+}
+
+$('tr').eq(1).addClass("highlight");
+setTimeout(function() {
+    $( "tr" ).removeClass('highlight');
+}, 3000);
